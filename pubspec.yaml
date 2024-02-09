@@ -2,31 +2,32 @@ name: digitallibrary
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
+environment:
   sdk: '>=3.2.5 <4.0.0'
 
-dependencies: 
+dependencies:
+  animated_splash_screen: 1.3.0
   cupertino_icons: ^1.0.2
+  dio: ^5.4.0
+  flutter:
+    sdk: flutter
+  flutter_rating_bar: 4.0.1
+  flutter_zoom_drawer: 3.1.1
   get: 4.6.6
+  get_storage: 2.1.1
+  google_fonts: 6.1.0
+  http: 1.2.0
   nb_utils: 6.1.0
   qr_flutter: 4.1.0
-  flutter_zoom_drawer: 3.1.1
-  http: 1.2.0
-  get_storage: 2.1.1
   readmore: 2.2.0
-  flutter_rating_bar: 4.0.1
-  google_fonts: 6.1.0
-  animated_splash_screen: 1.3.0
-  flutter: 
-    sdk: flutter
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
-flutter: 
-  assets: 
+flutter:
+  assets:
     - assets/images/logoP.png
     - assets/images/logoH.png
     - assets/images/bg.png
@@ -44,4 +45,3 @@ flutter:
     - assets/images/home.png
     - assets/images/logout.png
   uses-material-design: true
-

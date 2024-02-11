@@ -60,12 +60,14 @@ class HomeView extends GetView<HomeController> {
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
                   alignment: Alignment.topRight,
-                  child: Text(
-                    'Hai, Awa!',
-                    style: GoogleFonts.quicksand(
-                      color: colorFourd,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
+                  child: GetBuilder<HomeController>(
+                    builder: (controller) => Text(
+                      'Hai, ${controller.user?.value.userName}',
+                      style: GoogleFonts.quicksand(
+                        color: colorFourd,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

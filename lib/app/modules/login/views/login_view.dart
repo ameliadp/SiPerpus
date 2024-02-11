@@ -12,18 +12,20 @@ class LoginView extends GetView<LoginController> {
   @override
   final LoginController controller = Get.put(LoginController(
       authRepository: Get.put<AuthRepository>(AuthRepository())));
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQueryData = MediaQuery.of(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
         child: SingleChildScrollView(
           child: Obx(
             () => Form(
-              key: controller.formKey,
+              key: formKey,
               autovalidateMode: AutovalidateMode.always,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

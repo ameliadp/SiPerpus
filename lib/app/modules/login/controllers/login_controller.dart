@@ -15,7 +15,6 @@ class LoginController extends GetxController {
   final TextEditingController passC = TextEditingController();
   final TextEditingController nameC = TextEditingController();
   final TextEditingController alamatC = TextEditingController();
-  final GlobalKey<FormState> formKey = GlobalKey();
   RxBool isPasswordHidden = true.obs;
 
   void togglePasswordVisibility() {
@@ -39,7 +38,7 @@ class LoginController extends GetxController {
         return;
       }
 
-      Get.toNamed(Routes.HOME);
+      Get.offAllNamed(Routes.HOME);
     } on String catch (e) {
       Get.showSnackbar(
         GetSnackBar(

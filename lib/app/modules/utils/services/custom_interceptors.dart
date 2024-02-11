@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../models/models.dart';
 import 'storage_service.dart';
 
@@ -21,7 +23,7 @@ class CustomInterceptors extends Interceptor {
 
   @override
   Future onResponse(
-    Response response,
+    response,
     ResponseInterceptorHandler handler,
   ) async {
     return super.onResponse(response, handler);
@@ -29,6 +31,12 @@ class CustomInterceptors extends Interceptor {
 
   @override
   Future onError(DioException err, ErrorInterceptorHandler handler) async {
+    final StorageService storageService = StorageService.instance;
+    if (err.response?.statusCode == 401) {
+      await storageService.clearUser();
+      Get.offAllNamed(Routes.LOGIN);
+      return;
+    }
     return super.onError(err, handler);
   }
 }

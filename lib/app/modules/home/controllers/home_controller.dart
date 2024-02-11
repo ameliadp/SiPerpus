@@ -10,20 +10,47 @@ class HomeController extends GetxController {
 
   List<BookModel> books = [];
   List<BookModel> popularBooks = [];
+  Rx<UserModel>? user;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    Future.wait([
+    await (
+      getDetailUser(),
       getBooks(),
       getPopularBooks(),
-    ]);
+    ).wait;
+    update();
+  }
+
+  Future<void> getDetailUser() async {
+    try {
+      final UserModel res = await homeRepository.getDetailUser();
+      user = res.obs;
+    } on String catch (e) {
+      Get.showSnackbar(
+        GetSnackBar(
+          message: e,
+          backgroundColor: colorRed,
+          duration: const Duration(seconds: 1),
+          isDismissible: true,
+        ),
+      );
+    } catch (e) {
+      Get.showSnackbar(
+        const GetSnackBar(
+          message: "Failed to get most popular books",
+          backgroundColor: colorRed,
+          duration: Duration(seconds: 1),
+          isDismissible: true,
+        ),
+      );
+    }
   }
 
   Future<void> getBooks() async {
     try {
       books = await homeRepository.getBooks();
-      update();
     } on String catch (e) {
       Get.showSnackbar(
         GetSnackBar(
@@ -48,7 +75,6 @@ class HomeController extends GetxController {
   Future<void> getPopularBooks() async {
     try {
       popularBooks = await homeRepository.getPopularBooks();
-      update();
     } on String catch (e) {
       Get.showSnackbar(
         GetSnackBar(

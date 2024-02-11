@@ -1,3 +1,5 @@
+import 'package:digitallibrary/app/modules/utils/utils.dart';
+
 import '../data/repository/auth_repository.dart';
 import '../../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +33,7 @@ class LoginController extends GetxController {
 
   Future<void> login() async {
     try {
+      showLoading();
       final ReqLoginModel reqLoginModel =
           ReqLoginModel(email: emailC.text, password: passC.text);
       final UserModel? res = await authRepository.login(reqLoginModel);
@@ -59,11 +62,14 @@ class LoginController extends GetxController {
           isDismissible: true,
         ),
       );
+    } finally {
+      dismissLoading();
     }
   }
 
   Future<void> register() async {
     try {
+      showLoading();
       final ReqRegisterModel reqRegisterModel = ReqRegisterModel(
         email: emailC.text,
         password: passC.text,
@@ -71,17 +77,19 @@ class LoginController extends GetxController {
         userName: usernameC.text,
       );
       final String res = await authRepository.register(reqRegisterModel);
-
+      clearAllController();
       Get.showSnackbar(
         GetSnackBar(
           message: res,
           backgroundColor: colorPrimary,
           isDismissible: true,
           mainButton: TextButton(
-            child: const Text('Login'),
+            child: const Text(
+              'Login',
+              style: TextStyle(color: colorwhite),
+            ),
             onPressed: () {
               isRegis = false;
-              clearAllController();
               Get.closeAllSnackbars();
             },
           ),
@@ -108,7 +116,9 @@ class LoginController extends GetxController {
           isDismissible: true,
         ),
       );
-    } finally {}
+    } finally {
+      dismissLoading();
+    }
   }
 
   void clearAllController() {

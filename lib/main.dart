@@ -14,6 +14,7 @@ void main() async {
       debugShowCheckedModeBanner: false,
       title: "Application",
       initialRoute: AppPages.INITIAL,
+      builder: (context, child) => LoadingOverlayAlt(child: child!),
       getPages: AppPages.routes,
       routingCallback: (value) async {
         final UserModel? user = await StorageService.instance.getUser();

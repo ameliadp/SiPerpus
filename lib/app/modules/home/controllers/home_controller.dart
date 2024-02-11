@@ -13,14 +13,15 @@ class HomeController extends GetxController {
   Rx<UserModel>? user;
 
   @override
-  void onInit() async {
-    super.onInit();
+  void onReady() async {
+    showLoading();
     await (
       getDetailUser(),
       getBooks(),
       getPopularBooks(),
     ).wait;
     update();
+    dismissLoading();
   }
 
   Future<void> getDetailUser() async {

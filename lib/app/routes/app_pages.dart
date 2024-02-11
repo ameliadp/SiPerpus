@@ -67,7 +67,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SPLASH,
-      page: () => SplashView(),
+      page: () => const SplashView(),
       binding: SplashBinding(),
     ),
     GetPage(

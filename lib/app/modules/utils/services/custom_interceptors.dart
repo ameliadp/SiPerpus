@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import '../models/models.dart';
 import 'storage_service.dart';
 
 class CustomInterceptors extends Interceptor {
@@ -10,10 +11,10 @@ class CustomInterceptors extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     final StorageService storageService = StorageService.instance;
-    // final UserModel? user = await storageService.getUser();
-    // if (user != null) {
-    //   options.headers['Authorization'] = 'Bearer ${user.token}';
-    // }
+    final UserModel? user = await storageService.getUser();
+    if (user != null) {
+      options.headers['Authorization'] = 'Bearer ${user.token}';
+    }
 
     return super.onRequest(options, handler);
   }

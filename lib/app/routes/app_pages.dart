@@ -42,7 +42,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TOP_BOOK,
-      page: () => TopBookView(),
+      page: () => const TopBookView(),
       binding: TopBookBinding(),
     ),
     GetPage(
@@ -52,7 +52,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIBRARY,
-      page: () => LibraryView(),
+      page: () => const LibraryView(),
       binding: LibraryBinding(),
     ),
     GetPage(

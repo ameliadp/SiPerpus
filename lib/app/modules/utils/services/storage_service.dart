@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import '../constants/storage_key.dart';
+import '../models/models.dart';
 
 class StorageService {
   late GetStorage _storage;
@@ -47,13 +50,13 @@ class StorageService {
     }
   }
 
-  // Future<void> saveUser(UserModel user) async {
-  //   try {
-  //     await save(StorageKeys.userKey, jsonEncode(user.toJson()));
-  //   } catch (e) {
-  //     debugPrint('error when save user to storage $e');
-  //   }
-  // }
+  Future<void> saveUser(UserModel user) async {
+    try {
+      await save(StorageKeys.userKey, jsonEncode(user.toJson()));
+    } catch (e) {
+      debugPrint('error when save user to storage $e');
+    }
+  }
 
   Future<void> clearUser() async {
     try {
@@ -63,17 +66,17 @@ class StorageService {
     }
   }
 
-  // Future<UserModel?> getUser() async {
-  //   try {
-  //     final String? stringUser = await get(StorageKeys.userKey);
-  //     if (stringUser == null) {
-  //       return null;
-  //     }
+  Future<UserModel?> getUser() async {
+    try {
+      final String? stringUser = await get(StorageKeys.userKey);
+      if (stringUser == null) {
+        return null;
+      }
 
-  //     final UserModel user = UserModel.fromJson(jsonDecode(stringUser));
-  //     return user;
-  //   } catch (e) {
-  //     return null;
-  //   }
-  // }
+      final UserModel user = UserModel.fromJson(jsonDecode(stringUser));
+      return user;
+    } catch (e) {
+      return null;
+    }
+  }
 }

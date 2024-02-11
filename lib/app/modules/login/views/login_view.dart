@@ -1,5 +1,4 @@
-import 'package:digitallibrary/app/modules/utils/color.dart';
-import 'package:digitallibrary/app/routes/app_pages.dart';
+import '../../utils/color.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,11 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../controllers/login_controller.dart';
+import '../data/data.dart';
 
 class LoginView extends GetView<LoginController> {
-  final LoginController controller = Get.put(LoginController());
-  final GlobalKey<FormState> formKey = GlobalKey();
+  @override
+  final LoginController controller = Get.put(LoginController(
+      authRepository: Get.put<AuthRepository>(AuthRepository())));
   LoginView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -21,7 +23,7 @@ class LoginView extends GetView<LoginController> {
         child: SingleChildScrollView(
           child: Obx(
             () => Form(
-              key: formKey,
+              key: controller.formKey,
               autovalidateMode: AutovalidateMode.always,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -220,9 +222,9 @@ class LoginView extends GetView<LoginController> {
                         ),
                       controller.isRegis ? 40.height : 20.height,
                       ElevatedButton(
-                        onPressed: () {
-                          Get.toNamed(Routes.HOME);
-                        },
+                        onPressed: controller.isRegis
+                            ? controller.register
+                            : controller.login,
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),

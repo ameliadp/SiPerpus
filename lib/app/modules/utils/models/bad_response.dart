@@ -11,7 +11,7 @@ class BadResponse {
     this.message,
   });
 
-  final bool? error;
+  final String? error;
   final String? message;
 
   factory BadResponse.fromJson(Map<String, dynamic> json) => BadResponse(

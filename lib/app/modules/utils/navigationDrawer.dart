@@ -1,13 +1,15 @@
-import 'package:digitallibrary/app/modules/home/views/home_view.dart';
-import 'package:digitallibrary/app/modules/library/views/library_view.dart';
-import 'package:digitallibrary/app/modules/login/views/login_view.dart';
-import 'package:digitallibrary/app/modules/myList/views/my_list_view.dart';
-import 'package:digitallibrary/app/modules/profile/views/profile_view.dart';
-import 'package:digitallibrary/app/modules/utils/color.dart';
+import '../home/views/home_view.dart';
+import '../library/views/library_view.dart';
+import '../login/views/login_view.dart';
+import '../myList/views/my_list_view.dart';
+import '../profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
+
+import '../../routes/app_pages.dart';
+import 'utils.dart';
 
 class NavigationDrawerWidget extends StatefulWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -71,8 +73,8 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     required String image,
     VoidCallback? onClicked,
   }) {
-    final color = colorwhite;
-    final hoverColor = Colors.white;
+    const color = colorwhite;
+    const hoverColor = Colors.white;
 
     return InkWell(
       onTap: onClicked,
@@ -103,13 +105,13 @@ void selectedItem(BuildContext context, int Index) {
       Get.to(() => HomeView());
       break;
     case 1:
-      Get.to(() => LibraryView());
+      Get.to(() => const LibraryView());
       break;
     case 2:
       Get.to(() => MyListView());
       break;
     case 3:
-      Get.to(() => ProfileView());
+      Get.to(() => const ProfileView());
       break;
     case 4:
       Get.to(() => LoginView());
@@ -148,8 +150,10 @@ void logout(BuildContext context) {
                 vertical: 2.0,
               ),
               fixedSize: const Size(80, 2)),
-          onPressed: () {
+          onPressed: () async {
             Get.back();
+            await StorageService.instance.clearUser();
+            Get.offAllNamed(Routes.LOGIN);
           },
           child: Text(
             'Yes',

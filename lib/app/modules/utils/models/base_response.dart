@@ -1,18 +1,17 @@
 class BaseResponse {
   final dynamic data;
   final String message;
-  final bool error;
+  final int status;
 
   const BaseResponse({
     this.data,
+    required this.status,
     required this.message,
-    required this.error,
   });
 
-  factory BaseResponse.fromJson(Map<String, dynamic> json, String? dataKey) =>
-      BaseResponse(
+  factory BaseResponse.fromJson(Map<String, dynamic> json) => BaseResponse(
         message: json["message"] ?? "",
-        data: json[dataKey] ?? "",
-        error: json["error"] ?? "",
+        data: json["data"] ?? "",
+        status: json["status"] ?? 0,
       );
 }

@@ -23,11 +23,12 @@ class ApiService {
     _dio.interceptors.add(PrettyDioLogger());
   }
 
-  BaseResponse parseResponse(Response response, String? dataKey) {
+  BaseResponse parseResponse(
+    Response response,
+  ) {
     try {
-      final BaseResponse baseResponse =
-          BaseResponse.fromJson(response.data, dataKey);
-      if (!baseResponse.error) {
+      final BaseResponse baseResponse = BaseResponse.fromJson(response.data);
+      if (baseResponse.status == 200) {
         return baseResponse;
       }
       throw ServerException(baseResponse.message);
@@ -39,7 +40,7 @@ class ApiService {
   dynamic parseError(DioException e) {
     if (e.type == DioExceptionType.badResponse) {
       BadResponse badResponse = BadResponse.fromJson(e.response?.data);
-      throw ServerException(badResponse.message ?? '');
+      throw ServerException(badResponse.error ?? badResponse.message ?? '');
     }
     if (e.type == DioExceptionType.connectionTimeout) {
       throw const ServerFailure('check your connection');
@@ -54,15 +55,11 @@ class ApiService {
     }
   }
 
-  Future<BaseResponse> post(
-    String endpoints,
-    Map<String, dynamic> body, {
-    String? dataKey,
-  }) async {
+  Future<BaseResponse> post(String endpoints, Map<String, dynamic> body) async {
     try {
       final Response response =
           await _dio.post(endpoints, data: jsonEncode(body));
-      return parseResponse(response, dataKey);
+      return parseResponse(response);
     } on DioException catch (e) {
       return parseError(e);
     } catch (e) {
@@ -72,13 +69,12 @@ class ApiService {
 
   Future<BaseResponse> get(
     String endpoints, {
-    String? dataKey,
     Map<String, dynamic>? queryParams,
   }) async {
     try {
       final Response response =
           await _dio.get(endpoints, queryParameters: queryParams);
-      return parseResponse(response, dataKey);
+      return parseResponse(response);
     } on DioException catch (e) {
       return parseError(e);
     } catch (e) {
@@ -88,9 +84,8 @@ class ApiService {
 
   Future<BaseResponse> formData(
     String url,
-    UploadFormDataModel uploadFormData, {
-    String? dataKey,
-  }) async {
+    UploadFormDataModel uploadFormData,
+  ) async {
     try {
       FormData formData = FormData.fromMap({
         uploadFormData.fileKey: MultipartFile.fromBytes(
@@ -112,7 +107,7 @@ class ApiService {
           headers: headers,
         ),
       );
-      return parseResponse(response, dataKey);
+      return parseResponse(response);
     } on DioException catch (e) {
       return parseError(e);
     } catch (e) {

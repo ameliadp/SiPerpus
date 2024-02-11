@@ -1,7 +1,5 @@
-import 'package:digitallibrary/app/modules/utils/color.dart';
-import 'package:digitallibrary/app/modules/utils/menuDrawer.dart';
-import 'package:digitallibrary/app/modules/utils/navigationDrawer.dart';
-import 'package:digitallibrary/app/routes/app_pages.dart';
+import '../../utils/utils.dart';
+import '../../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
@@ -18,7 +16,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Container(
+      drawer: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
           child: const ClipRRect(
               borderRadius: BorderRadius.only(
@@ -196,12 +194,12 @@ class HomeView extends GetView<HomeController> {
                   itemCount: 6,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () {
+                      onTap: () async {
                         Get.toNamed(Routes.DETAIL);
                       },
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5.0),
-                        child: Container(
+                        child: SizedBox(
                           // decoration: BoxDecoration(color: colorPrimary),
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: 200,

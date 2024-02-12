@@ -111,7 +111,7 @@ void selectedItem(BuildContext context, int Index) {
       Get.to(() => MyListView());
       break;
     case 3:
-      Get.to(() => const ProfileView());
+      Get.to(() => ProfileView());
       break;
     case 4:
       Get.to(() => LoginView());

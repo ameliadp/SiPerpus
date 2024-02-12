@@ -1,8 +1,8 @@
-import 'package:digitallibrary/app/modules/home/views/home_view.dart';
-import 'package:digitallibrary/app/modules/library/views/library_view.dart';
-import 'package:digitallibrary/app/modules/myList/views/my_list_view.dart';
-import 'package:digitallibrary/app/modules/profile/views/profile_view.dart';
-import 'package:digitallibrary/app/modules/utils/color.dart';
+import '../home/views/home_view.dart';
+import '../library/views/library_view.dart';
+import '../myList/views/my_list_view.dart';
+import '../profile/views/profile_view.dart';
+import 'color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -98,7 +98,7 @@ class _MenuScreenState extends State<MenuScreen> {
               10.height,
               InkWell(
                 onTap: () {
-                  const ProfileView();
+                  ProfileView();
                 },
                 child: Row(
                   children: [

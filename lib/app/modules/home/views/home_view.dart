@@ -1,6 +1,7 @@
+import 'package:digitallibrary/app/modules/home/data/models/models.dart';
+
 import '../../utils/utils.dart';
 import '../../../routes/app_pages.dart';
-import 'components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
@@ -9,11 +10,12 @@ import 'package:nb_utils/nb_utils.dart';
 
 import '../controllers/home_controller.dart';
 import '../data/repository/repository.dart';
+import '../widgets/widgets.dart';
 
 class HomeView extends GetView<HomeController> {
-  @override
-  final HomeController controller = Get.put(HomeController(
-      homeRepository: Get.put<HomeRepository>(HomeRepository())));
+  // @override
+  // final HomeController controller = Get.put(HomeController(
+  //     homeRepository: Get.put<HomeRepository>(HomeRepository())));
   final zoomDrawer = ZoomDrawerController();
   HomeView({super.key});
 
@@ -101,14 +103,19 @@ class HomeView extends GetView<HomeController> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: SizedBox(
-                  height: 209,
+                  height: 250,
                   child: GetBuilder<HomeController>(
                     builder: (controller) => ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: controller.popularBooks.length,
                       itemBuilder: (context, index) {
+                        final BookModel book = controller.popularBooks[index];
                         return TopBookItem(
-                            book: controller.popularBooks[index]);
+                          book: book,
+                          onPress: () {
+                            controller.gotoDetailBook(book.bookId);
+                          },
+                        );
                       },
                     ),
                   ),
@@ -145,7 +152,13 @@ class HomeView extends GetView<HomeController> {
                     ),
                     itemCount: controller.books.length,
                     itemBuilder: (context, index) {
-                      return BookItem(book: controller.books[index]);
+                      final BookModel book = controller.books[index];
+                      return BookItem(
+                        book: book,
+                        onPress: () {
+                          controller.gotoDetailBook(book.bookId);
+                        },
+                      );
                     },
                   ),
                 ),

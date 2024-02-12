@@ -1,3 +1,5 @@
+import 'package:nb_utils/nb_utils.dart';
+
 import '../../../utils/utils.dart';
 import '../models/models.dart';
 
@@ -101,6 +103,22 @@ class HomeRepository {
       resUser = resUser.copyWith(token: currentUser?.token);
       _storageService.saveUser(resUser);
       return resUser;
+    } on ServerException catch (e) {
+      throw e.message;
+    } on Failure catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw 'Something went wrong';
+    }
+  }
+
+  Future<String> borrowBook(String bookId) async {
+    try {
+      final body = {
+        'book_id': bookId.toInt(),
+      };
+      final BaseResponse res = await _apiService.post(URL.borrowingUrl, body);
+      return res.message;
     } on ServerException catch (e) {
       throw e.message;
     } on Failure catch (e) {

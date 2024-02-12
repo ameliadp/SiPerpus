@@ -2,26 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-import '../../../utils/utils.dart';
-import '../../data/models/models.dart';
+import '../../utils/utils.dart';
+import '../data/models/models.dart';
 
-class BookItem extends StatelessWidget {
+class TopBookItem extends StatelessWidget {
   final BookModel book;
-  const BookItem({super.key, required this.book});
+  final VoidCallback onPress;
+  const TopBookItem({super.key, required this.book, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        // Get.toNamed(Routes.DETAIL);
-      },
+      onTap: onPress,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(5.0),
         child: SizedBox(
           // decoration: BoxDecoration(color: colorPrimary),
           width: MediaQuery.of(context).size.width * 0.4,
-          height: 200,
+          // height: 200,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
@@ -36,6 +36,7 @@ class BookItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 6.0, right: 6.0),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -57,7 +58,7 @@ class BookItem extends StatelessWidget {
                           size: 20.0,
                         ),
                         Text(
-                          '${book.rating}/5',
+                          '${book.rating ?? 0}/5',
                           style: GoogleFonts.quicksand(
                               color: colordarkgrey, fontSize: 13),
                         )

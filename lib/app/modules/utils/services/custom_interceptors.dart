@@ -1,3 +1,4 @@
+import 'package:digitallibrary/app/modules/utils/utils.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
@@ -31,6 +32,7 @@ class CustomInterceptors extends Interceptor {
 
   @override
   Future onError(DioException err, ErrorInterceptorHandler handler) async {
+    dismissLoading();
     final StorageService storageService = StorageService.instance;
     if (err.response?.statusCode == 401) {
       await storageService.clearUser();

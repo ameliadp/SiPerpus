@@ -1,3 +1,5 @@
+import 'package:digitallibrary/app/routes/app_pages.dart';
+
 import '../data/models/book_model.dart';
 import '../data/repository/home_repository.dart';
 import 'package:get/get.dart';
@@ -5,9 +7,8 @@ import 'package:get/get.dart';
 import '../../utils/utils.dart';
 
 class HomeController extends GetxController {
-  final HomeRepository homeRepository;
-  HomeController({required this.homeRepository});
-
+  final HomeRepository homeRepository =
+      Get.put<HomeRepository>(HomeRepository());
   List<BookModel> books = [];
   List<BookModel> popularBooks = [];
   Rx<UserModel>? user;
@@ -95,5 +96,10 @@ class HomeController extends GetxController {
         ),
       );
     }
+  }
+
+  void gotoDetailBook(String? bookId) {
+    if (bookId == null) return;
+    Get.toNamed(Routes.DETAIL, arguments: bookId);
   }
 }

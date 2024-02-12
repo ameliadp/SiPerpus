@@ -1,17 +1,15 @@
-import 'package:digitallibrary/app/modules/utils/utils.dart';
+import '../../utils/utils.dart';
 
 import '../data/repository/auth_repository.dart';
 import '../../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../utils/color.dart';
-import '../../utils/models/models.dart';
 import '../data/models/models.dart';
 
 class LoginController extends GetxController {
-  final AuthRepository authRepository;
-  LoginController({required this.authRepository});
+  final AuthRepository authRepository =
+      Get.put<AuthRepository>(AuthRepository());
   final TextEditingController usernameC = TextEditingController();
   final TextEditingController emailC = TextEditingController();
   final TextEditingController passC = TextEditingController();
@@ -26,10 +24,6 @@ class LoginController extends GetxController {
   final _isRegis = false.obs;
   bool get isRegis => _isRegis.value;
   set isRegis(value) => _isRegis.value = value;
-
-  final count = 0.obs;
-
-  void increment() => count.value++;
 
   Future<void> login() async {
     try {

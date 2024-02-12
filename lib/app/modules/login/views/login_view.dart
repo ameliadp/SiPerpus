@@ -9,9 +9,9 @@ import '../controllers/login_controller.dart';
 import '../data/data.dart';
 
 class LoginView extends GetView<LoginController> {
-  @override
-  final LoginController controller = Get.put(LoginController(
-      authRepository: Get.put<AuthRepository>(AuthRepository())));
+  // @override
+  // final LoginController controller = Get.put(LoginController(
+  //     authRepository: Get.put<AuthRepository>(AuthRepository())));
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 

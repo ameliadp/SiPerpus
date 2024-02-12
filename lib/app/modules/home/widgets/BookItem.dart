@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-import '../../../utils/utils.dart';
-import '../../data/models/models.dart';
+import '../../utils/utils.dart';
+import '../data/models/models.dart';
 
-class TopBookItem extends StatelessWidget {
+class BookItem extends StatelessWidget {
   final BookModel book;
-  const TopBookItem({super.key, required this.book});
+  final VoidCallback onPress;
+  const BookItem({super.key, required this.book, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        // Get.toNamed(Routes.DETAIL);
-      },
+      onTap: onPress,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(5.0),
         child: SizedBox(

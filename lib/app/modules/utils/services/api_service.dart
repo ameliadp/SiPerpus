@@ -55,10 +55,17 @@ class ApiService {
     }
   }
 
-  Future<BaseResponse> post(String endpoints, Map<String, dynamic> body) async {
+  Future<BaseResponse> post(
+    String endpoints,
+    Map<String, dynamic> body, {
+    Map<String, dynamic>? headers,
+  }) async {
     try {
-      final Response response =
-          await _dio.post(endpoints, data: jsonEncode(body));
+      final Response response = await _dio.post(
+        endpoints,
+        data: jsonEncode(body),
+        options: Options(headers: headers),
+      );
       return parseResponse(response);
     } on DioException catch (e) {
       return parseError(e);
@@ -69,11 +76,17 @@ class ApiService {
 
   Future<BaseResponse> get(
     String endpoints, {
+    Map<String, dynamic>? body,
     Map<String, dynamic>? queryParams,
+    Map<String, dynamic>? headers,
   }) async {
     try {
-      final Response response =
-          await _dio.get(endpoints, queryParameters: queryParams);
+      final Response response = await _dio.get(
+        endpoints,
+        data: jsonEncode(body),
+        queryParameters: queryParams,
+        options: Options(headers: headers),
+      );
       return parseResponse(response);
     } on DioException catch (e) {
       return parseError(e);

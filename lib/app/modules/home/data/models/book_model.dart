@@ -3,7 +3,6 @@
 //     final bookModel = bookModelFromJson(jsonString);
 
 import 'dart:convert';
-
 import '../data.dart';
 
 BookModel bookModelFromJson(String str) => BookModel.fromJson(json.decode(str));
@@ -19,7 +18,7 @@ class BookModel {
   final String? yearPublication;
   final String? synopsis;
   final String? thumbnail;
-  final int? rating;
+  final double? rating;
   final List<Review>? reviews;
 
   BookModel({
@@ -35,21 +34,26 @@ class BookModel {
     this.reviews,
   });
 
-  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
-        bookId: json["book_id"],
-        categoryId: json["category_id"],
-        title: json["title"],
-        writer: json["writer"],
-        publisher: json["publisher"],
-        yearPublication: json["year_publication"],
-        synopsis: json["synopsis"],
-        thumbnail: json["thumbnail"],
-        rating: json["rating"],
-        reviews: json["reviews"] == null
-            ? []
-            : List<Review>.from(
-                json["reviews"]!.map((x) => Review.fromJson(x))),
-      );
+  factory BookModel.fromJson(Map<String, dynamic> json) {
+    return BookModel(
+      bookId: json["book_id"],
+      categoryId: json["category_id"],
+      title: json["title"],
+      writer: json["writer"],
+      publisher: json["publisher"],
+      yearPublication: json["year_publication"],
+      synopsis: json["synopsis"],
+      thumbnail: json["thumbnail"],
+      rating: json["rating"] == null
+          ? 0.0
+          : json["rating"].runtimeType == double
+              ? json["rating"]
+              : double.parse((json["rating"] ?? 0).toString()),
+      reviews: json["reviews"] == null
+          ? []
+          : List<Review>.from(json["reviews"]!.map((x) => Review.fromJson(x))),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "book_id": bookId,

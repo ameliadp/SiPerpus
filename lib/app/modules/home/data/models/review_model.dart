@@ -1,8 +1,8 @@
 class Review {
-  final String? reviewId;
+  final int? reviewId;
   final String? userName;
   final String? review;
-  final int? rating;
+  final double? rating;
 
   Review({
     this.reviewId,
@@ -12,10 +12,10 @@ class Review {
   });
 
   factory Review.fromJson(Map<String, dynamic> json) => Review(
-        reviewId: json["review_id"],
+        reviewId: int.parse(json["review_id"] ?? 0),
         userName: json["user_name"],
         review: json["review"],
-        rating: json["rating"],
+        rating: double.parse((json["rating"] ?? "0").toString()),
       );
 
   Map<String, dynamic> toJson() => {

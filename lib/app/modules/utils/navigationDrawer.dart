@@ -102,19 +102,19 @@ void selectedItem(BuildContext context, int Index) {
 
   switch (Index) {
     case 0:
-      Get.to(() => HomeView());
+      Get.toNamed(Routes.HOME);
       break;
     case 1:
-      Get.to(() => const LibraryView());
+      Get.toNamed(Routes.LIBRARY);
       break;
     case 2:
-      Get.to(() => MyListView());
+      Get.toNamed(Routes.MY_LIST);
       break;
     case 3:
-      Get.to(() => ProfileView());
+      Get.toNamed(Routes.PROFILE);
       break;
     case 4:
-      Get.to(() => LoginView());
+      Get.toNamed(Routes.LOGIN);
       break;
     // case 5:
     //   Get.to(() => LoginView());

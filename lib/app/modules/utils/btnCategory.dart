@@ -5,7 +5,7 @@ import 'package:nb_utils/nb_utils.dart';
 class BtnCategory {
   ButtonStyle btnCategoryStyle(bool changeColor) {
     return ButtonStyle(
-      padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.all(10)),
+      // padding: MaterialStateProperty.all<EdgeInsets>(const EdgeInsets.all(10)),
       foregroundColor: changeColor
           ? MaterialStateProperty.all<Color>(colorwhite)
           : MaterialStateProperty.all<Color>(colorPrimary),

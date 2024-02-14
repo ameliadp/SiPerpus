@@ -1,6 +1,5 @@
-import 'package:digitallibrary/app/modules/home/data/models/models.dart';
-
 import '../../utils/utils.dart';
+import '../data/models/models.dart';
 import '../../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -9,13 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../controllers/home_controller.dart';
-import '../data/repository/repository.dart';
 import '../widgets/widgets.dart';
 
 class HomeView extends GetView<HomeController> {
-  // @override
-  // final HomeController controller = Get.put(HomeController(
-  //     homeRepository: Get.put<HomeRepository>(HomeRepository())));
   final zoomDrawer = ZoomDrawerController();
   HomeView({super.key});
 

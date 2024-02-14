@@ -27,7 +27,21 @@ class MyListRepository {
   Future<String> submitReview(ReqSubmitReview reqSubmitReview) async {
     try {
       final BaseResponse res =
-          await _apiService.post(URL.borrowingUrl, reqSubmitReview.toJson());
+          await _apiService.post(URL.reviewUrl, reqSubmitReview.toJson());
+      return res.message;
+    } on ServerException catch (e) {
+      throw e.message;
+    } on Failure catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw 'Something went wrong';
+    }
+  }
+
+  Future<String> returnBook(String borrowId) async {
+    try {
+      final body = {'borrow_id': borrowId};
+      final BaseResponse res = await _apiService.post(URL.returnBookUrl, body);
       return res.message;
     } on ServerException catch (e) {
       throw e.message;
@@ -40,7 +54,7 @@ class MyListRepository {
 
   Future<TotalFine> getTotalFine(String borrowId) async {
     try {
-      final body = {'borrow_id': 4};
+      final body = {'borrow_id': borrowId};
       final BaseResponse res =
           await _apiService.get(URL.totalFineUrl, body: body);
       return TotalFine.fromJson(res.data);

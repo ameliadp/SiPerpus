@@ -56,7 +56,7 @@ class HomeRepository {
       }
 
       for (var element in (res.data as List)) {
-        categories.add(categoryModelFromJson(element));
+        categories.add(CategoryModel.fromJson(element));
       }
       return categories;
     } on ServerException catch (e) {

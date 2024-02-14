@@ -61,9 +61,9 @@ class MyListView extends GetView<MyListController> {
                         onReturnPress: () async {
                           final MyListRepository repo = Get.find();
                           TotalFine totalFine =
-                              await repo.getTotalFine(borrowedBook.bookId!);
-                          showDetailBorrowedBook(
-                              totalFine, borrowedBook, controller.submitReview);
+                              await repo.getTotalFine(borrowedBook.borrowId!);
+                          showDetailBorrowedBook(totalFine, borrowedBook,
+                              controller.submitReviewAndReturn);
                         },
                         borrowedBook: borrowedBook,
                       );
@@ -279,6 +279,7 @@ void showDetailBorrowedBook(TotalFine? totalFine, BorrowedBook borrowedBook,
                           callbackAction(
                             ReqSubmitReview(
                               bookId: borrowedBook.bookId.toInt(),
+                              borrowId: borrowedBook.borrowId.toInt(),
                               review: reviewController.text,
                               rating: value,
                             ),

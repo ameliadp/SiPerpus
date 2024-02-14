@@ -18,13 +18,23 @@ class MyListController extends GetxController {
     getBorrowedBooks();
   }
 
-  Future<void> submitReview(ReqSubmitReview reqSubmitReview) async {
+  Future<void> submitReviewAndReturn(ReqSubmitReview reqSubmitReview) async {
     try {
       showLoading();
       String resSubmit = await myListRepository.submitReview(reqSubmitReview);
       Get.showSnackbar(
         GetSnackBar(
           message: resSubmit,
+          backgroundColor: colorPrimary,
+          duration: const Duration(seconds: 1),
+          isDismissible: true,
+        ),
+      );
+      String resReturn = await myListRepository
+          .returnBook(reqSubmitReview.borrowId.toString());
+      Get.showSnackbar(
+        GetSnackBar(
+          message: resReturn,
           backgroundColor: colorPrimary,
           duration: const Duration(seconds: 1),
           isDismissible: true,

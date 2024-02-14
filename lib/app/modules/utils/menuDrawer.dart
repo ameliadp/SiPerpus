@@ -1,5 +1,5 @@
+import '../../routes/app_pages.dart';
 import '../home/views/home_view.dart';
-import '../library/views/library_view.dart';
 import '../myList/views/my_list_view.dart';
 import '../profile/views/profile_view.dart';
 import 'color.dart';
@@ -38,7 +38,7 @@ class _MenuScreenState extends State<MenuScreen> {
               90.height,
               InkWell(
                 onTap: () {
-                  HomeView();
+                  Get.toNamed(Routes.HOME);
                 },
                 child: Row(
                   children: [
@@ -58,7 +58,7 @@ class _MenuScreenState extends State<MenuScreen> {
               10.height,
               InkWell(
                 onTap: () {
-                  const LibraryView();
+                  Get.toNamed(Routes.LIBRARY);
                 },
                 child: Row(
                   children: [
@@ -78,7 +78,7 @@ class _MenuScreenState extends State<MenuScreen> {
               10.height,
               InkWell(
                 onTap: () {
-                  MyListView();
+                  Get.toNamed(Routes.MY_LIST);
                 },
                 child: Row(
                   children: [
@@ -98,7 +98,7 @@ class _MenuScreenState extends State<MenuScreen> {
               10.height,
               InkWell(
                 onTap: () {
-                  ProfileView();
+                  Get.toNamed(Routes.PROFILE);
                 },
                 child: Row(
                   children: [

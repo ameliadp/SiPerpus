@@ -1,12 +1,12 @@
-import 'package:digitallibrary/app/modules/utils/btnCategory.dart';
-import 'package:digitallibrary/app/modules/utils/color.dart';
-import 'package:digitallibrary/app/routes/app_pages.dart';
+import '../../utils/color.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+import '../../home/data/data.dart';
+import '../../home/widgets/widgets.dart';
+import '../../library/widgets/widgets.dart';
 import '../controllers/top_book_controller.dart';
 
 class TopBookView extends GetView<TopBookController> {
@@ -39,111 +39,54 @@ class TopBookView extends GetView<TopBookController> {
                   height: 35.0,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: 6,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                            child: TextButton(
-                              onPressed: () {},
-                              style: BtnCategory().btnCategoryStyle(false),
-                              child: Text(
-                                'Category',
-                                style: GoogleFonts.quicksand(
-                                  fontWeight: FontWeight.bold,
-                                  // color: colorwhite,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        );
-                      },
+                    child: GetBuilder<TopBookController>(
+                      builder: (controller) => ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: controller.categories.length,
+                        itemBuilder: (context, index) {
+                          final CategoryModel category =
+                              controller.categories[index];
+                          return CategoryItem(
+                            category: category,
+                            isActive: controller.selectedCategory?.categoryId ==
+                                category.categoryId,
+                            onPress: () {
+                              controller.onSelectCategory(category);
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
               ),
               20.height,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 27.0,
-                    mainAxisSpacing: 0.0,
-                    childAspectRatio: 0.6, // Adjust the aspect ratio as needed
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: GetBuilder<TopBookController>(
+                  builder: (controller) => GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 27.0,
+                      mainAxisSpacing: 12.0,
+                      childAspectRatio:
+                          0.6, // Adjust the aspect ratio as needed
+                    ),
+                    itemCount: controller.books.length,
+                    itemBuilder: (context, index) {
+                      final BookModel book = controller.books[index];
+                      return BookItem(
+                        book: book,
+                        onPress: () {
+                          controller.gotoDetailBook(book.bookId);
+                        },
+                      );
+                    },
                   ),
-                  itemCount: 6,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.DETAIL);
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(5.0),
-                        child: Container(
-                          // decoration: BoxDecoration(color: colorPrimary),
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          height: 200,
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(5.0),
-                                child: Image.asset(
-                                  'assets/images/cover2.jpeg',
-                                  // width: double.infinity,
-                                  height: 190,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                              10.height,
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 6.0, right: 6.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'The Trouble With Perfect',
-                                      style: GoogleFonts.quicksand(
-                                          color: colorblack,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12.0),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          Icons.star,
-                                          color: Color(0xffFFD233),
-                                          size: 20.0,
-                                        ),
-                                        Text(
-                                          '4.5/5',
-                                          style: GoogleFonts.quicksand(
-                                              color: colordarkgrey,
-                                              fontSize: 13),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
                 ),
               ),
             ],

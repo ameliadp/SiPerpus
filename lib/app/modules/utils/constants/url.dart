@@ -13,4 +13,5 @@ class URL {
   static String returnBookUrl = '$baseUrl/return';
   static String reviewUrl = '$baseUrl/review';
   static String totalFineUrl = '$baseUrl/total-fine';
+  static String imageUrl(String path) => '$host$path';
 }

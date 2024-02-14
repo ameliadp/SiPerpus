@@ -1,10 +1,8 @@
-import 'package:digitallibrary/app/modules/utils/utils.dart';
+import '../utils.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
-import '../models/models.dart';
-import 'storage_service.dart';
 
 class CustomInterceptors extends Interceptor {
   const CustomInterceptors();
@@ -34,7 +32,9 @@ class CustomInterceptors extends Interceptor {
   Future onError(DioException err, ErrorInterceptorHandler handler) async {
     dismissLoading();
     final StorageService storageService = StorageService.instance;
-    if (err.response?.statusCode == 401) {
+    final uri = err.response?.realUri;
+    final isLoginPathUrl = URL.loginUrl.contains(uri?.path ?? '');
+    if (err.response?.statusCode == 401 && !isLoginPathUrl) {
       await storageService.clearUser();
       Get.offAllNamed(Routes.LOGIN);
       return;

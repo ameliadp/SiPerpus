@@ -3,9 +3,8 @@ import '../data/repository/profile_repository.dart';
 import '../../utils/utils.dart';
 
 class ProfileController extends GetxController {
-  final ProfileRepository profileRepository;
-  ProfileController({required this.profileRepository});
-  Rx<UserModel>? user;
+  final ProfileRepository profileRepository = Get.find();
+  UserModel? user;
 
   @override
   void onReady() {
@@ -15,8 +14,8 @@ class ProfileController extends GetxController {
   Future<UserModel?> getProfile() async {
     try {
       final UserModel? res = await profileRepository.getProfile();
-      user = res?.obs;
-      print("cek user ${user?.value.userName}");
+      user = res;
+      update();
     } on String catch (e) {
       Get.showSnackbar(
         GetSnackBar(

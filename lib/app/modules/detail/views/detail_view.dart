@@ -1,31 +1,14 @@
-import 'package:digitallibrary/app/modules/detail/widgets/review_item.dart';
-import 'package:digitallibrary/app/modules/home/data/data.dart';
-import 'package:digitallibrary/app/modules/utils/color.dart';
+import '../widgets/review_item.dart';
+import '../../home/data/data.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
-
+import '../../utils/utils.dart';
 import '../controllers/detail_controller.dart';
 
 class DetailView extends GetView<DetailController> {
-  String content =
-      "Hantu Belanda berambut pirang itu selalu terlihat marah, gusar, dan "
-      "mengusir siapa pun yang datang ke rumah. Dia benci orang-orang "
-      "berwajah Melayu, dia benci perempuan-perempuan cantik, dia benci "
-      "keluarga manusia yang berbahagia. Namun yang paling parah, "
-      "dia sangat benci aku. Berulang kali kudengar dia berteriak, "
-      "“Pergi kau dari sini! Kafiu sahabat Elizabeth! Kau jahat! Sama seperti "
-      "perempuan sundal itu!” Ivanna namanya, gadis yang selalu membuat "
-      "aku ketakutan. Tak ada yang berani mendekatinya karena serta-merta "
-      "dia itu akan menyerang bagai bertemu musuh. Tak habis pikir bagiku, "
-      "kenapa harus aku terbawa dalam luapan kemarahannya? Aku ingin "
-      "mencari tahu sesuatu di masa lalunya. Sang hantu perempuan Belanda "
-      "angkuh yang pernah tinggal di rumah nenekku. Menjadi kakak angkat "
-      "bagi Peter, William, Janshen, Hendrick, dan Hans. Aku tahu, masa "
-      "lalunya pasti mengerikan.";
-  DetailView({Key? key}) : super(key: key);
+  const DetailView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -260,12 +243,21 @@ class DetailView extends GetView<DetailController> {
               right: 125,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(7.0),
-                child: SizedBox(
-                  height: 170,
-                  child: Image.asset(
-                    'assets/images/cover3.jpeg',
+                child: GetBuilder<DetailController>(
+                  builder: (controller) => SizedBox(
                     height: 170,
-                    fit: BoxFit.contain,
+                    child: Image.network(
+                      // 'assets/images/cover3.jpeg',
+                      URL.imageUrl(controller.book?.thumbnail ?? ""),
+                      // width: double.infinity,
+                      height: 200,
+                      errorBuilder: (context, error, stackTrace) =>
+                          const SizedBox(
+                        height: 200,
+                        child: Icon(Icons.error),
+                      ),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
               ),

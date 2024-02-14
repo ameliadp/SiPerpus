@@ -7,12 +7,7 @@ import '../../utils/color.dart';
 import '../data/data.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  @override
-  final ProfileController controller =
-      Get.put<ProfileController>(ProfileController(
-    profileRepository: Get.put<ProfileRepository>((ProfileRepository())),
-  ));
-  ProfileView({Key? key}) : super(key: key);
+  const ProfileView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +63,7 @@ class ProfileView extends GetView<ProfileController> {
                                 ),
                                 2.height,
                                 Text(
-                                  '${controller.user?.value.email}',
+                                  '${controller.user?.email}',
                                   style: GoogleFonts.quicksand(
                                     color: colorblack,
                                     fontSize: 16.0,
@@ -98,7 +93,7 @@ class ProfileView extends GetView<ProfileController> {
                                 ),
                                 2.height,
                                 Text(
-                                  '${controller.user?.value.userName}',
+                                  '${controller.user?.userName}',
                                   style: GoogleFonts.quicksand(
                                     color: colorblack,
                                     fontSize: 16.0,
@@ -128,7 +123,7 @@ class ProfileView extends GetView<ProfileController> {
                                 ),
                                 2.height,
                                 Text(
-                                  '${controller.user?.value.address}',
+                                  '${controller.user?.address}',
                                   style: GoogleFonts.quicksand(
                                     color: colorblack,
                                     fontSize: 16.0,

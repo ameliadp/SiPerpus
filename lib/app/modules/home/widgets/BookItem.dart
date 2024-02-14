@@ -24,10 +24,15 @@ class BookItem extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(5.0),
-                child: Image.asset(
-                  'assets/images/cover3.jpeg',
+                child: Image.network(
+                  // 'assets/images/cover3.jpeg',
+                  URL.imageUrl(book.thumbnail!),
                   // width: double.infinity,
                   height: 200,
+                  errorBuilder: (context, error, stackTrace) => const SizedBox(
+                    height: 200,
+                    child: Icon(Icons.error),
+                  ),
                   fit: BoxFit.contain,
                 ),
               ),

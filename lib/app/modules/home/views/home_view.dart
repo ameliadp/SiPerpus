@@ -1,6 +1,5 @@
 import '../../utils/utils.dart';
 import '../data/models/models.dart';
-import '../../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
@@ -82,16 +81,16 @@ class HomeView extends GetView<HomeController> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Get.toNamed(Routes.TOP_BOOK);
-                      },
-                      child: Text(
-                        'See All',
-                        style: GoogleFonts.quicksand(
-                            color: const Color(0xff89AEF4), fontSize: 15.0),
-                      ),
-                    ),
+                    // TextButton(
+                    //   onPressed: () {
+                    //     Get.toNamed(Routes.TOP_BOOK);
+                    //   },
+                    //   child: Text(
+                    //     'See All',
+                    //     style: GoogleFonts.quicksand(
+                    //         color: const Color(0xff89AEF4), fontSize: 15.0),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -122,7 +121,7 @@ class HomeView extends GetView<HomeController> {
                 child: Container(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Most Popular'.toUpperCase(),
+                    'Other Books'.toUpperCase(),
                     style: GoogleFonts.quicksand(
                         color: colorFourd,
                         fontSize: 20.0,

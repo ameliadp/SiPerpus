@@ -20,6 +20,7 @@ class LibraryController extends GetxController {
 
   Future<void> onSelectCategory(CategoryModel category) async {
     try {
+      showLoading();
       selectedCategory = category;
       update();
       books =
@@ -43,7 +44,9 @@ class LibraryController extends GetxController {
           isDismissible: true,
         ),
       );
-    } finally {}
+    } finally {
+      dismissLoading();
+    }
   }
 
   Future<void> getBooksByCategory() async {

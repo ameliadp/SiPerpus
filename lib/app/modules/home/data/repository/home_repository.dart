@@ -35,8 +35,9 @@ class HomeRepository {
 
   Future<List<BookModel>> getBooksByCategory(String categoryId) async {
     try {
+      final qParams = {'category': categoryId};
       final BaseResponse res =
-          await _apiService.get(URL.booksWithCategoryUrl(categoryId));
+          await _apiService.get(URL.booksUrl, queryParams: qParams);
       return mappingBook(res);
     } on ServerException catch (e) {
       throw e.message;

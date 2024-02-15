@@ -83,7 +83,7 @@ class ApiService {
     try {
       final Response response = await _dio.get(
         endpoints,
-        data: jsonEncode(body),
+        data: body == null ? null : jsonEncode(body),
         queryParameters: queryParams,
         options: Options(headers: headers),
       );

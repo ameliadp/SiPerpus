@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../../../routes/app_pages.dart';
 import '../data/models/models.dart';
 import '../data/repository/my_list_repository.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,18 @@ class MyListController extends GetxController {
           isDismissible: true,
         ),
       );
+      dismissLoading();
+
+      final resPayment = await Get.toNamed(Routes.PAYMENT);
+      if (resPayment != null && resPayment) {
+        Get.showSnackbar(const GetSnackBar(
+          message: "Payment successfully",
+          backgroundColor: colorPrimary,
+          duration: Duration(seconds: 1),
+          isDismissible: true,
+        ));
+      }
+
       getBorrowedBooks();
     } on String catch (e) {
       Get.showSnackbar(

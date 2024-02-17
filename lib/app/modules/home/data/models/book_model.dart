@@ -46,7 +46,7 @@ class BookModel {
       yearPublication: json["year_publication"],
       synopsis: json["synopsis"],
       thumbnail: json["thumbnail"],
-      status: json["is_status"],
+      status: json["is_status"] ?? false,
       rating: json["rating"] == null
           ? 0.0
           : json["rating"].runtimeType == double

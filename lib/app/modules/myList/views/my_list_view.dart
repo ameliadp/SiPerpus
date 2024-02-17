@@ -1,7 +1,7 @@
+import '../../utils/utils.dart';
 import '../data/models/models.dart';
 import '../data/repository/my_list_repository.dart';
 import '../widgets/borrowed_book_item.dart';
-import '../../utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -314,8 +314,8 @@ void showDetailBorrowedBook(TotalFine? totalFine, BorrowedBook borrowedBook,
             //     color: colorPrimary),
             width: 200,
             height: 150,
-            child: Image.asset(
-              'assets/images/cover.jpg',
+            child: Image.network(
+              URL.imageUrl(borrowedBook.thumbnail ?? ''),
               width: 200,
               height: 150,
               fit: BoxFit.contain,

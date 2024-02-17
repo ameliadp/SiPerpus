@@ -33,8 +33,8 @@ class BorrowedBookItem extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(5.0),
-            child: Image.asset(
-              'assets/images/cover.jpg',
+            child: Image.network(
+              URL.imageUrl(borrowedBook?.thumbnail ?? ""),
               // width: 70,
               height: 90,
               fit: BoxFit.contain,

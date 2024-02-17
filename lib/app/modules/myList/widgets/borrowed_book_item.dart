@@ -7,11 +7,15 @@ import '../../utils/utils.dart';
 class BorrowedBookItem extends StatelessWidget {
   final VoidCallback onReturnPress;
   final BorrowedBook? borrowedBook;
+
   const BorrowedBookItem(
       {super.key, required this.onReturnPress, required this.borrowedBook});
 
   @override
   Widget build(BuildContext context) {
+    final isBorrowed = borrowedBook?.status == null
+        ? true
+        : borrowedBook!.status!.contains("borrowing");
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
@@ -67,7 +71,7 @@ class BorrowedBookItem extends StatelessWidget {
                   style: GoogleFonts.quicksand(color: colorblack),
                 ),
                 TextSpan(
-                  text: '${borrowedBook?.status}',
+                  text: isBorrowed ? "Borrowed" : borrowedBook?.status,
                   style: GoogleFonts.quicksand(
                     color: Colors.blue,
                   ),
@@ -77,23 +81,23 @@ class BorrowedBookItem extends StatelessWidget {
           ),
           trailing: SizedBox(
             height: 28.0,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: colorPrimary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                fixedSize: const Size(90.0, 10.0),
-              ),
-              onPressed: () {
-                onReturnPress();
-                // showDetailBorrowedBook(myListController.ulasanC);
-              },
-              child: Text(
-                'Return',
-                style: GoogleFonts.quicksand(color: colorwhite, fontSize: 13.0),
-              ),
-            ),
+            child: !isBorrowed
+                ? null
+                : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: colorPrimary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      fixedSize: const Size(90.0, 10.0),
+                    ),
+                    onPressed: onReturnPress,
+                    child: Text(
+                      'Return',
+                      style: GoogleFonts.quicksand(
+                          color: colorwhite, fontSize: 13.0),
+                    ),
+                  ),
           ),
         ),
       ),

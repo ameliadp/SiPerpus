@@ -1,11 +1,10 @@
-import 'dart:ui';
-
-import 'package:digitallibrary/app/modules/home/data/models/models.dart';
-import 'package:digitallibrary/app/modules/home/data/repository/repository.dart';
+import '../../home/data/models/models.dart';
+import '../../home/data/repository/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../utils/utils.dart';
 
 class DetailController extends GetxController {
@@ -63,6 +62,7 @@ class DetailController extends GetxController {
           isDismissible: true,
         ),
       );
+      Get.offNamed(Routes.MY_LIST);
     } on String catch (e) {
       Get.showSnackbar(
         GetSnackBar(

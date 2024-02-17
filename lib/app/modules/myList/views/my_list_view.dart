@@ -19,61 +19,69 @@ class MyListView extends GetView<MyListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 35.0,
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: colorPrimary,
-              size: 20.0,
-            ),
+      appBar: AppBar(
+        toolbarHeight: 35.0,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: colorPrimary,
+            size: 20.0,
           ),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 20.0),
-                child: Text(
-                  'My List',
-                  style: GoogleFonts.quicksand(
-                      color: colorFourd,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0),
-                ),
+      ),
+      body: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+              child: Text(
+                'My List',
+                style: GoogleFonts.quicksand(
+                    color: colorFourd,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30.0),
               ),
-              10.height,
-              Padding(
+            ),
+            10.height,
+            Flexible(
+              flex: 1,
+              child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: GetBuilder<MyListController>(
-                  builder: (controller) => ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.borrowedBooks.length,
-                    itemBuilder: (context, index) {
-                      final BorrowedBook borrowedBook =
-                          controller.borrowedBooks[index];
-                      return BorrowedBookItem(
-                        onReturnPress: () async {
-                          final MyListRepository repo = Get.find();
-                          TotalFine totalFine =
-                              await repo.getTotalFine(borrowedBook.borrowId!);
-                          showDetailBorrowedBook(totalFine, borrowedBook,
-                              controller.submitReviewAndReturn);
-                        },
-                        borrowedBook: borrowedBook,
-                      );
-                    },
+                  builder: (controller) => RefreshIndicator.adaptive(
+                    onRefresh: controller.getBorrowedBooks,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.borrowedBooks.length,
+                      itemBuilder: (context, index) {
+                        final BorrowedBook borrowedBook =
+                            controller.borrowedBooks[index];
+                        return BorrowedBookItem(
+                          onReturnPress: () async {
+                            final MyListRepository repo = Get.find();
+                            TotalFine totalFine =
+                                await repo.getTotalFine(borrowedBook.borrowId!);
+                            showDetailBorrowedBook(totalFine, borrowedBook,
+                                controller.submitReviewAndReturn);
+                          },
+                          borrowedBook: borrowedBook,
+                        );
+                      },
+                    ),
                   ),
                 ),
-              )
-            ],
-          ),
-        ));
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
 

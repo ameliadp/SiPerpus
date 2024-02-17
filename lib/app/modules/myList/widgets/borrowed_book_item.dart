@@ -15,7 +15,7 @@ class BorrowedBookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final isBorrowed = borrowedBook?.status == null
         ? true
-        : borrowedBook!.status!.contains("borrowing");
+        : borrowedBook!.status!.contains("borrowed");
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
@@ -71,7 +71,7 @@ class BorrowedBookItem extends StatelessWidget {
                   style: GoogleFonts.quicksand(color: colorblack),
                 ),
                 TextSpan(
-                  text: isBorrowed ? "Borrowed" : borrowedBook?.status,
+                  text: borrowedBook?.status,
                   style: GoogleFonts.quicksand(
                     color: Colors.blue,
                   ),

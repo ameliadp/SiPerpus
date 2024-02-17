@@ -265,25 +265,27 @@ class DetailView extends GetView<DetailController> {
             Positioned(
               top: 654.0,
               right: 20.0,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 2,
-                  shadowColor: colorgrey,
-                  fixedSize: const Size(110, 20),
-                  backgroundColor: colorPrimary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 4.0, vertical: 2.0),
-                ),
-                onPressed: controller.borrowBook,
-                child: Text(
-                  'Borrow Book'.toUpperCase(),
-                  style:
-                      GoogleFonts.quicksand(color: colorwhite, fontSize: 12.0),
-                ),
-              ),
+              child: controller.book?.status ?? true
+                  ? const SizedBox()
+                  : ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        shadowColor: colorgrey,
+                        fixedSize: const Size(110, 20),
+                        backgroundColor: colorPrimary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 4.0, vertical: 2.0),
+                      ),
+                      onPressed: controller.borrowBook,
+                      child: Text(
+                        'Borrow Book'.toUpperCase(),
+                        style: GoogleFonts.quicksand(
+                            color: colorwhite, fontSize: 12.0),
+                      ),
+                    ),
             ),
           ],
         ),

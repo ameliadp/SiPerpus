@@ -19,6 +19,7 @@ class BookModel {
   final String? synopsis;
   final String? thumbnail;
   final double? rating;
+  final bool status;
   final List<Review>? reviews;
 
   BookModel({
@@ -32,6 +33,7 @@ class BookModel {
     this.thumbnail,
     this.rating,
     this.reviews,
+    this.status = false,
   });
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
@@ -44,6 +46,7 @@ class BookModel {
       yearPublication: json["year_publication"],
       synopsis: json["synopsis"],
       thumbnail: json["thumbnail"],
+      status: json["is_status"],
       rating: json["rating"] == null
           ? 0.0
           : json["rating"].runtimeType == double
@@ -65,6 +68,7 @@ class BookModel {
         "synopsis": synopsis,
         "thumbnail": thumbnail,
         "rating": rating,
+        "status": status,
         "reviews": reviews == null
             ? []
             : List<dynamic>.from(reviews!.map((x) => x.toJson())),

@@ -39,24 +39,47 @@ class TopBookView extends GetView<TopBookController> {
                   height: 35.0,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: GetBuilder<TopBookController>(
-                      builder: (controller) => ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: controller.categories.length,
-                        itemBuilder: (context, index) {
-                          final CategoryModel category =
-                              controller.categories[index];
-                          return CategoryItem(
-                            category: category,
-                            isActive: controller.selectedCategory?.categoryId ==
-                                category.categoryId,
-                            onPress: () {
-                              controller.onSelectCategory(category);
+                    child: Stack(
+                      children: [
+                        GetBuilder<TopBookController>(
+                          builder: (controller) => ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemCount: controller.categories.length,
+                            itemBuilder: (context, index) {
+                              final CategoryModel category =
+                                  controller.categories[index];
+                              return CategoryItem(
+                                category: category,
+                                isActive:
+                                    controller.selectedCategory?.categoryId ==
+                                        category.categoryId,
+                                onPress: () {
+                                  controller.onSelectCategory(category);
+                                },
+                              );
                             },
-                          );
-                        },
-                      ),
+                          ),
+                        ),
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          bottom: 0,
+                          child: Container(
+                            width: 10.0,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 0),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

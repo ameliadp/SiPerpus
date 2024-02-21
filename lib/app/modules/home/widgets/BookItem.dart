@@ -22,19 +22,23 @@ class BookItem extends StatelessWidget {
           height: 200,
           child: Column(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
-                child: Image.network(
-                  // 'assets/images/cover3.jpeg',
-                  URL.imageUrl(book.thumbnail!),
-                  // width: double.infinity,
-                  height: 200,
-                  errorBuilder: (context, error, stackTrace) => const SizedBox(
-                    height: 200,
-                    child: Icon(Icons.error),
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: Image.network(
+                      // 'assets/images/cover3.jpeg',
+                      URL.imageUrl(book.thumbnail!),
+                      // width: double.infinity,
+                      height: 200,
+                      errorBuilder: (context, error, stackTrace) => const SizedBox(
+                        height: 200,
+                        child: Icon(Icons.error),
+                      ),
+                      fit: BoxFit.contain,
+                    ),
                   ),
-                  fit: BoxFit.contain,
-                ),
+                ],
               ),
               10.height,
               Padding(

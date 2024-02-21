@@ -10,6 +10,10 @@ import '../data/data.dart';
 
 class LoginView extends GetView<LoginController> {
   @override
+  bool containSpace(String value) {
+    return value.contains('');
+  }
+
   final LoginController controller = Get.put(LoginController());
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -48,14 +52,14 @@ class LoginView extends GetView<LoginController> {
                     children: [
                       controller.isRegis
                           ? Text(
-                              'Login To Your Account',
+                              'Create New Account',
                               style: GoogleFonts.quicksand(
                                   color: colorFourd,
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold),
                             )
                           : Text(
-                              'Create New Account',
+                              'Login To Your Account',
                               style: GoogleFonts.quicksand(
                                   color: colorFourd,
                                   fontSize: 20.0,
@@ -69,9 +73,15 @@ class LoginView extends GetView<LoginController> {
                           autocorrect: false,
                           keyboardType: TextInputType.name,
                           controller: controller.usernameC,
-                          validator: ((value) => value == null || value == ''
-                              ? 'This field is required'
-                              : null),
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'This field is required';
+                            }
+                            if (value.trim().contains(' ')) {
+                              return 'Username cannot contain spaces';
+                            }
+                            return null;
+                          },
                           decoration: InputDecoration(
                             isCollapsed: true,
                             contentPadding: const EdgeInsets.symmetric(
@@ -161,36 +171,36 @@ class LoginView extends GetView<LoginController> {
                           return null;
                         },
                       ),
-                      10.height,
-                      if (controller.isRegis)
-                        TextFormField(
-                          showCursor: true,
-                          cursorColor: colorPrimary,
-                          autocorrect: false,
-                          keyboardType: TextInputType.name,
-                          controller: controller.nameC,
-                          validator: ((value) => value == null || value == ''
-                              ? 'This field is required'
-                              : null),
-                          decoration: InputDecoration(
-                            isCollapsed: true,
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 17),
-                            labelText: 'Nama Lengkap',
-                            labelStyle: GoogleFonts.quicksand(
-                              fontSize: 15,
-                              color: colorgrey,
-                            ),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide:
-                                    const BorderSide(color: colorPrimary)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide:
-                                    const BorderSide(color: colorPrimary)),
-                          ),
-                        ),
+                      // 10.height,
+                      // if (controller.isRegis)
+                      //   TextFormField(
+                      //     showCursor: true,
+                      //     cursorColor: colorPrimary,
+                      //     autocorrect: false,
+                      //     keyboardType: TextInputType.name,
+                      //     controller: controller.nameC,
+                      //     validator: ((value) => value == null || value == ''
+                      //         ? 'This field is required'
+                      //         : null),
+                      //     decoration: InputDecoration(
+                      //       isCollapsed: true,
+                      //       contentPadding: const EdgeInsets.symmetric(
+                      //           horizontal: 15, vertical: 17),
+                      //       labelText: 'Nama Lengkap',
+                      //       labelStyle: GoogleFonts.quicksand(
+                      //         fontSize: 15,
+                      //         color: colorgrey,
+                      //       ),
+                      //       border: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(10),
+                      //           borderSide:
+                      //               const BorderSide(color: colorPrimary)),
+                      //       focusedBorder: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(10),
+                      //           borderSide:
+                      //               const BorderSide(color: colorPrimary)),
+                      //     ),
+                      //   ),
                       10.height,
                       if (controller.isRegis)
                         TextFormField(

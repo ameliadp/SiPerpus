@@ -24,12 +24,12 @@ class ReviewItem extends StatelessWidget {
             children: [
               Text(
                 review?.userName ?? '',
-                style: GoogleFonts.lato(color: colorblack, fontSize: 20.0),
+                style: GoogleFonts.mulish(color: colorblack, fontSize: 20.0),
               ),
               5.height,
               Text(
                 review?.review ?? "",
-                style: GoogleFonts.lato(color: colordarkgrey, fontSize: 15.0),
+                style: GoogleFonts.mulish(color: colordarkgrey, fontSize: 15.0),
               ),
             ],
           ),

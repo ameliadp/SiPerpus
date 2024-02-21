@@ -15,7 +15,12 @@ class DetailView extends GetView<DetailController> {
       backgroundColor: colorPrimary,
       appBar: AppBar(
         backgroundColor: colorPrimary,
-        toolbarHeight: 35.0,
+        toolbarHeight: 45.0,
+        title: Text(
+          'Details',
+          style: GoogleFonts.quicksand(
+              color: colorwhite, fontSize: 20.0, fontWeight: FontWeight.w700),
+        ),
         leading: IconButton(
           onPressed: () {
             Get.back();
@@ -36,7 +41,7 @@ class DetailView extends GetView<DetailController> {
               right: 0,
               child: SingleChildScrollView(
                 child: Container(
-                  height: MediaQuery.of(context).size.height / 2 + 230,
+                  height: MediaQuery.of(context).size.height / 2 + 240,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius:
@@ -73,18 +78,18 @@ class DetailView extends GetView<DetailController> {
                                     Text(
                                       'Writer',
                                       style: GoogleFonts.quicksand(
-                                          color: colordarkgrey, fontSize: 16.0),
+                                          color: colordarkgrey, fontSize: 18.0),
                                     ),
-                                    74.width,
+                                    79.width,
                                     Text(':',
                                         style: GoogleFonts.quicksand(
                                             color: colordarkgrey,
-                                            fontSize: 16.0)),
+                                            fontSize: 18.0)),
                                     8.width,
                                     Text('${controller.book?.writer}',
                                         style: GoogleFonts.quicksand(
                                             color: colordarkgrey,
-                                            fontSize: 16.0))
+                                            fontSize: 18.0))
                                   ],
                                 ),
                                 10.height,
@@ -94,17 +99,17 @@ class DetailView extends GetView<DetailController> {
                                     Text('Publisher',
                                         style: GoogleFonts.quicksand(
                                             color: colordarkgrey,
-                                            fontSize: 16.0)),
-                                    54.width,
+                                            fontSize: 18.0)),
+                                    60.width,
                                     Text(':',
                                         style: GoogleFonts.quicksand(
                                             color: colordarkgrey,
-                                            fontSize: 16.0)),
+                                            fontSize: 18.0)),
                                     8.width,
                                     Text('${controller.book?.publisher}',
                                         style: GoogleFonts.quicksand(
                                             color: colordarkgrey,
-                                            fontSize: 16.0))
+                                            fontSize: 18.0))
                                   ],
                                 ),
                                 10.height,
@@ -114,23 +119,23 @@ class DetailView extends GetView<DetailController> {
                                     Text('Publication Year',
                                         style: GoogleFonts.quicksand(
                                             color: colordarkgrey,
-                                            fontSize: 16.0)),
+                                            fontSize: 18.0)),
                                     13.width,
                                     Text(':',
                                         style: GoogleFonts.quicksand(
                                             color: colordarkgrey,
-                                            fontSize: 16.0)),
+                                            fontSize: 18.0)),
                                     8.width,
                                     Text('${controller.book?.yearPublication}',
                                         style: GoogleFonts.quicksand(
                                             color: colordarkgrey,
-                                            fontSize: 16.0))
+                                            fontSize: 18.0))
                                   ],
                                 ),
                               ],
                             ),
                           ),
-                          7.height,
+                          10.height,
                           Padding(
                             padding: const EdgeInsets.only(right: 15.0),
                             child: Row(
@@ -149,6 +154,7 @@ class DetailView extends GetView<DetailController> {
                               ],
                             ),
                           ),
+                          10.height,
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 20.0),
@@ -161,34 +167,34 @@ class DetailView extends GetView<DetailController> {
                                     Text(
                                       'Synopsis',
                                       style: GoogleFonts.quicksand(
-                                          color: colordarkgrey, fontSize: 16.0),
+                                          color: colordarkgrey, fontSize: 18.0),
                                     ),
-                                    55.width,
+                                    65.width,
                                     Text(
                                       ':',
                                       style: GoogleFonts.quicksand(
-                                          color: colordarkgrey, fontSize: 16.0),
+                                          color: colordarkgrey, fontSize: 18.0),
                                     )
                                   ],
                                 ),
                                 8.height,
                                 ReadMoreText(
                                   '${controller.book?.synopsis}',
-                                  trimLines: 5,
-                                  colorClickableText: colorPrimary,
+                                  trimLines: 6,
+                                  colorClickableText: colorBold,
                                   trimMode: TrimMode.Line,
-                                  trimCollapsedText: '...Read More',
-                                  trimExpandedText: ' Show Less',
-                                  style: GoogleFonts.quicksand(
-                                      color: colordarkgrey, fontSize: 14.0),
+                                  trimCollapsedText: ' ...Read More',
+                                  trimExpandedText: '  Show Less',
+                                  style: GoogleFonts.mulish(
+                                      color: colordarkgrey, fontSize: 15.0),
                                   textAlign: TextAlign.justify,
                                 ),
                               ],
                             ),
                           ),
-                          25.height,
+                          28.height,
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 60.0),
+                            padding: const EdgeInsets.only(bottom: 20.0),
                             child: Container(
                               height: 170.0,
                               decoration:
@@ -209,27 +215,72 @@ class DetailView extends GetView<DetailController> {
                                               fontSize: 15.0,
                                               fontWeight: FontWeight.bold)),
                                     ),
-                                    SizedBox(
-                                      height: 120.0,
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        child: ListView.builder(
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: controller
-                                                .book?.reviews?.length,
-                                            itemBuilder: (context, index) {
-                                              final Review? review = controller
-                                                  .book?.reviews?[index];
-                                              return ReviewItem(review: review);
-                                            }),
-                                      ),
-                                    ),
+                                    (controller.book?.reviews?.length ?? 0) < 1
+                                        ? Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              'No Reviews Found',
+                                              style: GoogleFonts.quicksand(
+                                                  color: colorwhite,
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            height: 120.0,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              child: ListView.builder(
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  itemCount: controller
+                                                      .book?.reviews?.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    final Review? review =
+                                                        controller.book
+                                                            ?.reviews?[index];
+                                                    return ReviewItem(
+                                                        review: review);
+                                                  }),
+                                            ),
+                                          ),
                                   ],
                                 ),
                               ),
                             ),
-                          )
+                          ),
+                          5.height,
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  bottom: 15.0, right: 25.0),
+                              child: controller.book?.status ?? true
+                                  ? const SizedBox()
+                                  : ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        elevation: 2,
+                                        shadowColor: colorgrey,
+                                        fixedSize: const Size(110, 20),
+                                        backgroundColor: colorPrimary,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 4.0, vertical: 2.0),
+                                      ),
+                                      onPressed: controller.borrowBook,
+                                      child: Text(
+                                        'Borrow Book'.toUpperCase(),
+                                        style: GoogleFonts.quicksand(
+                                            color: colorwhite, fontSize: 12.0),
+                                      ),
+                                    ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -238,7 +289,7 @@ class DetailView extends GetView<DetailController> {
               ),
             ),
             Positioned(
-              top: 15,
+              top: 0,
               left: 125,
               right: 125,
               child: ClipRRect(
@@ -250,7 +301,7 @@ class DetailView extends GetView<DetailController> {
                       // 'assets/images/cover3.jpeg',
                       URL.imageUrl(controller.book?.thumbnail ?? ""),
                       // width: double.infinity,
-                      height: 200,
+                      height: 170,
                       errorBuilder: (context, error, stackTrace) =>
                           const SizedBox(
                         height: 200,
@@ -262,31 +313,31 @@ class DetailView extends GetView<DetailController> {
                 ),
               ),
             ),
-            Positioned(
-              top: 654.0,
-              right: 20.0,
-              child: controller.book?.status ?? true
-                  ? const SizedBox()
-                  : ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 2,
-                        shadowColor: colorgrey,
-                        fixedSize: const Size(110, 20),
-                        backgroundColor: colorPrimary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 4.0, vertical: 2.0),
-                      ),
-                      onPressed: controller.borrowBook,
-                      child: Text(
-                        'Borrow Book'.toUpperCase(),
-                        style: GoogleFonts.quicksand(
-                            color: colorwhite, fontSize: 12.0),
-                      ),
-                    ),
-            ),
+            // Positioned(
+            //   top: 654.0,
+            //   right: 20.0,
+            //   child: controller.book?.status ?? true
+            //       ? const SizedBox()
+            //       : ElevatedButton(
+            //           style: ElevatedButton.styleFrom(
+            //             elevation: 2,
+            //             shadowColor: colorgrey,
+            //             fixedSize: const Size(110, 20),
+            //             backgroundColor: colorPrimary,
+            //             shape: RoundedRectangleBorder(
+            //               borderRadius: BorderRadius.circular(15.0),
+            //             ),
+            //             padding: const EdgeInsets.symmetric(
+            //                 horizontal: 4.0, vertical: 2.0),
+            //           ),
+            //           onPressed: controller.borrowBook,
+            //           child: Text(
+            //             'Borrow Book'.toUpperCase(),
+            //             style: GoogleFonts.quicksand(
+            //                 color: colorwhite, fontSize: 12.0),
+            //           ),
+            //         ),
+            // ),
           ],
         ),
       ),

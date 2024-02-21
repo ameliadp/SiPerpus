@@ -92,7 +92,7 @@ class LoginController extends GetxController {
     } on String catch (e) {
       Get.showSnackbar(
         GetSnackBar(
-          title: "Login failed",
+          title: "Register failed",
           message: e,
           backgroundColor: colorRed,
           duration: const Duration(seconds: 1),
@@ -103,7 +103,7 @@ class LoginController extends GetxController {
       // _myRouter.showSnackbar('Something went wrong with $e');
       Get.showSnackbar(
         GetSnackBar(
-          title: "Login failed",
+          title: "Register failed",
           message: "Something went wrong with $e",
           backgroundColor: colorRed,
           duration: const Duration(seconds: 1),

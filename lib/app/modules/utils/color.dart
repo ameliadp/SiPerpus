@@ -10,3 +10,4 @@ const colorwhite = Colors.white;
 const colordarkgrey = Color(0xff7D7C7C);
 const colorRed = Colors.red;
 const colorBlue = Color(0xFF63A6D7);
+const colorBold = Color(0xff163020);

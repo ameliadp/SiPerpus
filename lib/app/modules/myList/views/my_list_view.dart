@@ -20,17 +20,32 @@ class MyListView extends GetView<MyListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 35.0,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: colorPrimary,
-            size: 20.0,
+        toolbarHeight: 50.0,
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Text(
+            'My List',
+            style: GoogleFonts.quicksand(
+                color: colorPrimary,
+                fontSize: 25.0,
+                fontWeight: FontWeight.w700),
           ),
         ),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 12.0, bottom: 8.0),
+          child: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: colorPrimary,
+              size: 20.0,
+            ),
+          ),
+        ),
+        elevation: 3,
+        shadowColor: colorgrey,
       ),
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
@@ -38,21 +53,22 @@ class MyListView extends GetView<MyListController> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 20.0),
-              child: Text(
-                'My List',
-                style: GoogleFonts.quicksand(
-                    color: colorFourd,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30.0),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+            //   child: Text(
+            //     'My List',
+            //     style: GoogleFonts.quicksand(
+            //         color: colorFourd,
+            //         fontWeight: FontWeight.bold,
+            //         fontSize: 30.0),
+            //   ),
+            // ),
             10.height,
             Flexible(
               flex: 1,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0, vertical: 10.0),
                 child: GetBuilder<MyListController>(
                   builder: (controller) => RefreshIndicator.adaptive(
                     onRefresh: controller.getBorrowedBooks,
@@ -95,7 +111,7 @@ void showDetailBorrowedBook(TotalFine? totalFine, BorrowedBook borrowedBook,
     Stack(
       children: [
         Container(
-          height: 650.0,
+          height: 600.0,
           margin: const EdgeInsets.fromLTRB(0, 90, 0, 0),
           decoration: const BoxDecoration(
             color: colorwhite,
@@ -126,7 +142,7 @@ void showDetailBorrowedBook(TotalFine? totalFine, BorrowedBook borrowedBook,
                         style: GoogleFonts.quicksand(
                           fontWeight: FontWeight.bold,
                           color: colorblack,
-                          fontSize: 24.0,
+                          fontSize: 20.0,
                         ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
@@ -136,7 +152,7 @@ void showDetailBorrowedBook(TotalFine? totalFine, BorrowedBook borrowedBook,
                         borrowedBook.writer ?? '',
                         style: GoogleFonts.quicksand(
                           color: colorblack,
-                          fontSize: 17.0,
+                          fontSize: 20.0,
                         ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
@@ -167,9 +183,9 @@ void showDetailBorrowedBook(TotalFine? totalFine, BorrowedBook borrowedBook,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Text(
-                            'Rp ${totalFine?.totalFine ?? "-"}',
+                            'Rp ${totalFine?.totalFine ?? "-"}',  
                             style: GoogleFonts.quicksand(
-                                color: colorblack, fontSize: 15.0),
+                                color: colorblack, fontSize: 20.0),
                           ),
                         ),
                       )

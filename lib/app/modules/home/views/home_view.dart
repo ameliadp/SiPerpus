@@ -25,11 +25,14 @@ class HomeView extends GetView<HomeController> {
               child: NavigationDrawerWidget())),
       appBar: AppBar(
         backgroundColor: colorwhite,
-        toolbarHeight: 45.0,
-        title: Text(
-          'Home',
-          style: GoogleFonts.quicksand(
-              color: colorFourd, fontSize: 25.0, fontWeight: FontWeight.w700),
+        toolbarHeight: 50.0,
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Text(
+            'Home',
+            style: GoogleFonts.quicksand(
+                color: colorFourd, fontSize: 25.0, fontWeight: FontWeight.w700),
+          ),
         ),
         leading: Builder(
           builder: (context) {
@@ -45,7 +48,8 @@ class HomeView extends GetView<HomeController> {
             );
           },
         ),
-        elevation: 4,
+        elevation: 3,
+        shadowColor: colorgrey,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -53,12 +57,13 @@ class HomeView extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding:
+                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                 child: Container(
                   alignment: Alignment.topRight,
                   child: GetBuilder<HomeController>(
                     builder: (controller) => Text(
-                      'Hai, ${controller.user?.value.userName}',
+                      'Hai, ${controller.user?.value.userName}!',
                       style: GoogleFonts.quicksand(
                         color: colorFourd,
                         fontSize: 30.0,
@@ -94,10 +99,11 @@ class HomeView extends GetView<HomeController> {
                   ],
                 ),
               ),
+              5.height,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: SizedBox(
-                  height: 250,
+                  height: 209,
                   child: GetBuilder<HomeController>(
                     builder: (controller) => ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -131,7 +137,7 @@ class HomeView extends GetView<HomeController> {
               ),
               15.height,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                padding: const EdgeInsets.only(right: 18.0, left: 14.0),
                 child: GetBuilder<HomeController>(
                   builder: (controller) => GridView.builder(
                     shrinkWrap: true,
@@ -141,8 +147,7 @@ class HomeView extends GetView<HomeController> {
                       crossAxisCount: 2,
                       crossAxisSpacing: 27.0,
                       mainAxisSpacing: 12.0,
-                      childAspectRatio:
-                          0.6, // Adjust the aspect ratio as needed
+                      childAspectRatio: 0.6,
                     ),
                     itemCount: controller.books.length,
                     itemBuilder: (context, index) {

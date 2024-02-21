@@ -12,25 +12,40 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 35.0,
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: colorPrimary,
-              size: 20.0,
+          toolbarHeight: 50.0,
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              'Profile',
+              style: GoogleFonts.quicksand(
+                  color: colorPrimary,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.w700),
             ),
           ),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 12.0, bottom: 8.0),
+            child: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: colorPrimary,
+                size: 20.0,
+              ),
+            ),
+          ),
+          elevation: 3,
+          shadowColor: colorgrey,
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 17.0, left: 20.0),
+              padding: const EdgeInsets.only(top: 20.0, left: 20.0),
               child: Text(
-                'Profile',
+                'Borrower Data',
                 style: GoogleFonts.quicksand(
                     color: colorFourd,
                     fontWeight: FontWeight.bold,
@@ -43,15 +58,15 @@ class ProfileView extends GetView<ProfileController> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                        top: 17.0, left: 25.0, right: 25.0),
+                        top: 5.0, left: 20.0, right: 20.0),
                     child: Center(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(
-                                top: 15.0, left: 10.0, right: 10.0),
+                            padding:
+                                const EdgeInsets.only(top: 15.0, left: 5.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,14 +77,28 @@ class ProfileView extends GetView<ProfileController> {
                                       color: colorgrey, fontSize: 15.0),
                                 ),
                                 2.height,
-                                Text(
-                                  '${controller.user?.email}',
-                                  style: GoogleFonts.quicksand(
-                                    color: colorblack,
-                                    fontSize: 16.0,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        '${controller.user?.email}',
+                                        style: GoogleFonts.quicksand(
+                                          color: colorblack,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ),
+                                    10.width,
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.edit_outlined,
+                                        color: colorPrimary,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -81,25 +110,28 @@ class ProfileView extends GetView<ProfileController> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                top: 20.0, left: 10.0, right: 10.0),
+                                top: 20.0, left: 5.0, right: 5.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Nama Lengkap',
+                                  'Username',
                                   style: GoogleFonts.quicksand(
                                       color: colorgrey, fontSize: 15.0),
                                 ),
                                 2.height,
-                                Text(
-                                  '${controller.user?.userName}',
-                                  style: GoogleFonts.quicksand(
-                                    color: colorblack,
-                                    fontSize: 16.0,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${controller.user?.userName}',
+                                      style: GoogleFonts.quicksand(
+                                        color: colorblack,
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -111,7 +143,7 @@ class ProfileView extends GetView<ProfileController> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                top: 20.0, left: 10.0, right: 10.0),
+                                top: 20.0, left: 5.0, right: 5.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,14 +154,17 @@ class ProfileView extends GetView<ProfileController> {
                                       color: colorgrey, fontSize: 15.0),
                                 ),
                                 2.height,
-                                Text(
-                                  '${controller.user?.address}',
-                                  style: GoogleFonts.quicksand(
-                                    color: colorblack,
-                                    fontSize: 16.0,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${controller.user?.address}',
+                                      style: GoogleFonts.quicksand(
+                                        color: colorblack,
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),

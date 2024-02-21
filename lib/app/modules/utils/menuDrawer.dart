@@ -1,7 +1,4 @@
 import '../../routes/app_pages.dart';
-import '../home/views/home_view.dart';
-import '../myList/views/my_list_view.dart';
-import '../profile/views/profile_view.dart';
 import 'color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

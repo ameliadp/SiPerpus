@@ -110,11 +110,35 @@ class HomeView extends GetView<HomeController> {
                       itemCount: controller.popularBooks.length,
                       itemBuilder: (context, index) {
                         final BookModel book = controller.popularBooks[index];
-                        return TopBookItem(
-                          book: book,
-                          onPress: () {
-                            controller.gotoDetailBook(book.bookId);
-                          },
+                        return Stack(
+                          children: [
+                            TopBookItem(
+                              book: book,
+                              onPress: () {
+                                controller.gotoDetailBook(book.bookId);
+                              },
+                            ),
+                            Positioned(
+                              top: 12,
+                              right: 14,
+                              child: CircleAvatar(
+                                backgroundColor: colorwhite,
+                                radius: 10.0,
+                              ),
+                            ),
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              bottom: 164,
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.bookmark_border,
+                                  size: 10.0,
+                                ),
+                              ),
+                            ),
+                          ],
                         );
                       },
                     ),
@@ -137,7 +161,7 @@ class HomeView extends GetView<HomeController> {
               ),
               15.height,
               Padding(
-                padding: const EdgeInsets.only(right: 18.0, left: 14.0),
+                padding: const EdgeInsets.only(right: 18.0, left: 18.0),
                 child: GetBuilder<HomeController>(
                   builder: (controller) => GridView.builder(
                     shrinkWrap: true,
@@ -152,11 +176,35 @@ class HomeView extends GetView<HomeController> {
                     itemCount: controller.books.length,
                     itemBuilder: (context, index) {
                       final BookModel book = controller.books[index];
-                      return BookItem(
-                        book: book,
-                        onPress: () {
-                          controller.gotoDetailBook(book.bookId);
-                        },
+                      return Stack(
+                        children: [
+                          BookItem(
+                            book: book,
+                            onPress: () {
+                              controller.gotoDetailBook(book.bookId);
+                            },
+                          ),
+                          Positioned(
+                            top: 7,
+                            right: 15,
+                            child: CircleAvatar(
+                              backgroundColor: colorwhite,
+                              radius: 13.0,
+                            ),
+                          ),
+                          Positioned(
+                            top: 0,
+                            right: 4,
+                            bottom: 208,
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.bookmark_border,
+                                size: 16.0,
+                              ),
+                            ),
+                          ),
+                        ],
                       );
                     },
                   ),

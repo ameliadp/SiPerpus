@@ -102,7 +102,7 @@ class LibraryView extends GetView<LibraryController> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 18.0, left: 14.0),
+              padding: const EdgeInsets.only(right: 18.0, left: 18.0),
               child: GetBuilder<LibraryController>(
                 builder: (controller) => GridView.builder(
                   shrinkWrap: true,
@@ -116,11 +116,35 @@ class LibraryView extends GetView<LibraryController> {
                   itemCount: controller.books.length,
                   itemBuilder: (context, index) {
                     final BookModel book = controller.books[index];
-                    return BookItem(
-                      book: book,
-                      onPress: () {
-                        controller.gotoDetailBook(book.bookId);
-                      },
+                    return Stack(
+                      children: [
+                        BookItem(
+                          book: book,
+                          onPress: () {
+                            controller.gotoDetailBook(book.bookId);
+                          },
+                        ),
+                        Positioned(
+                          top: 8,
+                          right: 15,
+                          child: CircleAvatar(
+                            backgroundColor: colorwhite,
+                            radius: 13.0,
+                          ),
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 4,
+                          bottom: 206,
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.bookmark_border,
+                              size: 16.0,
+                            ),
+                          ),
+                        ),
+                      ],
                     );
                   },
                 ),

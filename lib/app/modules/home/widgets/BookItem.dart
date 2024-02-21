@@ -19,26 +19,22 @@ class BookItem extends StatelessWidget {
         child: SizedBox(
           // decoration: BoxDecoration(color: colorPrimary),
           width: MediaQuery.of(context).size.width * 0.4,
-          height: 200,
+          height: 244,
           child: Column(
             children: [
-              Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5.0),
-                    child: Image.network(
-                      // 'assets/images/cover3.jpeg',
-                      URL.imageUrl(book.thumbnail!),
-                      // width: double.infinity,
-                      height: 200,
-                      errorBuilder: (context, error, stackTrace) => const SizedBox(
-                        height: 200,
-                        child: Icon(Icons.error),
-                      ),
-                      fit: BoxFit.contain,
-                    ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5.0),
+                child: Image.network(
+                  // 'assets/images/cover3.jpeg',
+                  URL.imageUrl(book.thumbnail!),
+                  // width: double.infinity,
+                  height: 200,
+                  errorBuilder: (context, error, stackTrace) => const SizedBox(
+                    height: 200,
+                    child: Icon(Icons.error),
                   ),
-                ],
+                  fit: BoxFit.contain,
+                ),
               ),
               10.height,
               Padding(
@@ -65,7 +61,7 @@ class BookItem extends StatelessWidget {
                           size: 20.0,
                         ),
                         Text(
-                          '${book.rating}/5',
+                          '${book.rating ?? 0}/5',
                           style: GoogleFonts.quicksand(
                               color: colordarkgrey, fontSize: 13),
                         )

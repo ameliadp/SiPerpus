@@ -1,3 +1,5 @@
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../utils/color.dart';
 import 'package:flutter/material.dart';
 
@@ -15,17 +17,32 @@ class TopBookView extends GetView<TopBookController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 35.0,
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: colorPrimary,
-              size: 20.0,
+          toolbarHeight: 50.0,
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              'Top Book',
+              style: GoogleFonts.quicksand(
+                  color: colorPrimary,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.w700),
             ),
           ),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 12.0, bottom: 8.0),
+            child: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_new_rounded,
+                color: colorPrimary,
+                size: 20.0,
+              ),
+            ),
+          ),
+          elevation: 3,
+          shadowColor: colorgrey,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -99,9 +116,9 @@ class TopBookView extends GetView<TopBookController> {
                       childAspectRatio:
                           0.6, // Adjust the aspect ratio as needed
                     ),
-                    itemCount: controller.books.length,
+                    itemCount: controller.popularBooks.length,
                     itemBuilder: (context, index) {
-                      final BookModel book = controller.books[index];
+                      final BookModel book = controller.popularBooks[index];
                       return BookItem(
                         book: book,
                         onPress: () {

@@ -1,4 +1,6 @@
+import 'package:digitallibrary/app/modules/utils/saved_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../home/data/data.dart';
 import '../widgets/category_item.dart';
@@ -12,9 +14,12 @@ import '../../home/widgets/widgets.dart';
 import '../controllers/library_controller.dart';
 
 class LibraryView extends GetView<LibraryController> {
-  const LibraryView({super.key});
+  final LibraryController controller = Get.put(LibraryController());
+  LibraryView({super.key});
   @override
   Widget build(BuildContext context) {
+    // final word = controller.books.toList();
+    // final provider = Provider.of<SavedProvider>(context);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 50.0,
@@ -111,40 +116,16 @@ class LibraryView extends GetView<LibraryController> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 27.0,
                     mainAxisSpacing: 12.0,
-                    childAspectRatio: 0.6, // Adjust the aspect ratio as needed
+                    childAspectRatio: 0.6,
                   ),
                   itemCount: controller.books.length,
                   itemBuilder: (context, index) {
                     final BookModel book = controller.books[index];
-                    return Stack(
-                      children: [
-                        BookItem(
-                          book: book,
-                          onPress: () {
-                            controller.gotoDetailBook(book.bookId);
-                          },
-                        ),
-                        Positioned(
-                          top: 8,
-                          right: 15,
-                          child: CircleAvatar(
-                            backgroundColor: colorwhite,
-                            radius: 13.0,
-                          ),
-                        ),
-                        Positioned(
-                          top: 0,
-                          right: 4,
-                          bottom: 206,
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.bookmark_border,
-                              size: 16.0,
-                            ),
-                          ),
-                        ),
-                      ],
+                    return BookItem(
+                      book: book,
+                      onPress: () {
+                        controller.gotoDetailBook(book.bookId);
+                      },
                     );
                   },
                 ),

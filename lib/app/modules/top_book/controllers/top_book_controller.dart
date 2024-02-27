@@ -7,6 +7,7 @@ import '../../utils/utils.dart';
 class TopBookController extends GetxController {
   final HomeRepository homeRepository = Get.find<HomeRepository>();
   List<BookModel> books = [];
+  List<BookModel> popularBooks = [];
   CategoryModel? selectedCategory;
   List<CategoryModel> categories = [];
 
@@ -15,6 +16,7 @@ class TopBookController extends GetxController {
     await (
       getCategories(),
       getBooksByCategory(),
+      getPopularBooks(),
     ).wait;
   }
 
@@ -96,6 +98,30 @@ class TopBookController extends GetxController {
       );
     } finally {
       dismissLoading();
+    }
+  }
+
+  Future<void> getPopularBooks() async {
+    try {
+      popularBooks = await homeRepository.getPopularBooks();
+    } on String catch (e) {
+      Get.showSnackbar(
+        GetSnackBar(
+          message: e,
+          backgroundColor: colorRed,
+          duration: const Duration(seconds: 1),
+          isDismissible: true,
+        ),
+      );
+    } catch (e) {
+      Get.showSnackbar(
+        const GetSnackBar(
+          message: "Failed to get most popular books",
+          backgroundColor: colorRed,
+          duration: Duration(seconds: 1),
+          isDismissible: true,
+        ),
+      );
     }
   }
 

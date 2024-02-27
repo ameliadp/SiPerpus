@@ -2,15 +2,13 @@ name: digitallibrary
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment:
+environment: 
   sdk: '>=3.2.5 <4.0.0'
 
-dependencies:
+dependencies: 
   animated_splash_screen: 1.3.0
   cupertino_icons: ^1.0.2
   dio: ^5.4.0
-  flutter:
-    sdk: flutter
   flutter_rating_bar: 4.0.1
   flutter_zoom_drawer: 3.1.1
   get: 4.6.6
@@ -20,14 +18,35 @@ dependencies:
   nb_utils: 6.1.0
   qr_flutter: 4.1.0
   readmore: 2.2.0
-
-dev_dependencies:
-  flutter_lints: ^2.0.0
-  flutter_test:
+  provider: 6.1.1
+  image_gallery_saver: 2.0.3
+  flutter_launcher_icons: 0.13.1
+  flutter: 
     sdk: flutter
 
-flutter:
-  assets:
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logoH.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/images/logoH.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/logoH.png"
+    icon_size: 39
+  remove_alpha_ios: true
+
+flutter: 
+  assets: 
     - assets/images/
     - assets/images/logoP.png
     - assets/images/logoH.png
@@ -44,5 +63,7 @@ flutter:
     - assets/images/list.png
     - assets/images/library.png
     - assets/images/home.png
+    - assets/images/saved.png
     - assets/images/logout.png
   uses-material-design: true
+

@@ -59,9 +59,27 @@ class PaymentView extends GetView<PaymentController> {
                       ),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 4.0,
-                        vertical: 2.0,
                       ),
-                      fixedSize: const Size(80, 2)),
+                      fixedSize: const Size(110, 2)),
+                  onPressed: () {
+                    controller.downloadQr(context);
+                  },
+                  child: Text(
+                    'DOWNLOAD QR',
+                    style: GoogleFonts.quicksand(
+                        color: colorwhite, fontSize: 14.0),
+                  ),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: colorPrimary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 4.0,
+                      ),
+                      fixedSize: const Size(110, 2)),
                   onPressed: () {
                     Get.back();
                   },

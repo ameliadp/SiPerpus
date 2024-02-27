@@ -1,3 +1,7 @@
+import 'package:digitallibrary/app/modules/utils/saved_provider.dart';
+import 'package:digitallibrary/app/routes/app_pages.dart';
+import 'package:provider/provider.dart';
+
 import '../../utils/utils.dart';
 import '../data/models/models.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +15,13 @@ import '../widgets/widgets.dart';
 
 class HomeView extends GetView<HomeController> {
   final zoomDrawer = ZoomDrawerController();
+  final book = BookModel();
   HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final word = book.toString();
+    final provider = Provider.of<SavedProvider>(context, listen: false);
     return Scaffold(
       drawer: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
@@ -74,7 +81,10 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.only(
+                  left: 20.0,
+                  right: 10.0,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -86,16 +96,16 @@ class HomeView extends GetView<HomeController> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    // TextButton(
-                    //   onPressed: () {
-                    //     Get.toNamed(Routes.TOP_BOOK);
-                    //   },
-                    //   child: Text(
-                    //     'See All',
-                    //     style: GoogleFonts.quicksand(
-                    //         color: const Color(0xff89AEF4), fontSize: 15.0),
-                    //   ),
-                    // ),
+                    TextButton(
+                      onPressed: () {
+                        Get.toNamed(Routes.TOP_BOOK);
+                      },
+                      child: Text(
+                        'See All',
+                        style: GoogleFonts.quicksand(
+                            color: const Color(0xff89AEF4), fontSize: 15.0),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -176,35 +186,11 @@ class HomeView extends GetView<HomeController> {
                     itemCount: controller.books.length,
                     itemBuilder: (context, index) {
                       final BookModel book = controller.books[index];
-                      return Stack(
-                        children: [
-                          BookItem(
-                            book: book,
-                            onPress: () {
-                              controller.gotoDetailBook(book.bookId);
-                            },
-                          ),
-                          Positioned(
-                            top: 7,
-                            right: 15,
-                            child: CircleAvatar(
-                              backgroundColor: colorwhite,
-                              radius: 13.0,
-                            ),
-                          ),
-                          Positioned(
-                            top: 0,
-                            right: 4,
-                            bottom: 208,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.bookmark_border,
-                                size: 16.0,
-                              ),
-                            ),
-                          ),
-                        ],
+                      return BookItem(
+                        book: book,
+                        onPress: () {
+                          controller.gotoDetailBook(book.bookId);
+                        },
                       );
                     },
                   ),

@@ -47,55 +47,52 @@ class MyListView extends GetView<MyListController> {
         elevation: 3,
         shadowColor: colorgrey,
       ),
-      body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 20.0, top: 20.0),
-            //   child: Text(
-            //     'My List',
-            //     style: GoogleFonts.quicksand(
-            //         color: colorFourd,
-            //         fontWeight: FontWeight.bold,
-            //         fontSize: 30.0),
-            //   ),
-            // ),
-            10.height,
-            Flexible(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12.0, vertical: 10.0),
-                child: GetBuilder<MyListController>(
-                  builder: (controller) => RefreshIndicator.adaptive(
-                    onRefresh: controller.getBorrowedBooks,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.borrowedBooks.length,
-                      itemBuilder: (context, index) {
-                        final BorrowedBook borrowedBook =
-                            controller.borrowedBooks[index];
-                        return BorrowedBookItem(
-                          onReturnPress: () async {
-                            final MyListRepository repo = Get.find();
-                            TotalFine totalFine =
-                                await repo.getTotalFine(borrowedBook.borrowId!);
-                            showDetailBorrowedBook(totalFine, borrowedBook,
-                                controller.submitReviewAndReturn);
-                          },
-                          borrowedBook: borrowedBook,
-                        );
-                      },
-                    ),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+          //   child: Text(
+          //     'My List',
+          //     style: GoogleFonts.quicksand(
+          //         color: colorFourd,
+          //         fontWeight: FontWeight.bold,
+          //         fontSize: 30.0),
+          //   ),
+          // ),
+          10.height,
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
+              child: GetBuilder<MyListController>(
+                builder: (controller) => RefreshIndicator.adaptive(
+                  onRefresh: controller.getBorrowedBooks,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.borrowedBooks.length,
+                    itemBuilder: (context, index) {
+                      final BorrowedBook borrowedBook =
+                          controller.borrowedBooks[index];
+                      return BorrowedBookItem(
+                        onReturnPress: () async {
+                          final MyListRepository repo = Get.find();
+                          TotalFine totalFine =
+                              await repo.getTotalFine(borrowedBook.borrowId!);
+                          showDetailBorrowedBook(totalFine, borrowedBook,
+                              controller.submitReviewAndReturn);
+                        },
+                        borrowedBook: borrowedBook,
+                      );
+                    },
                   ),
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -183,7 +180,7 @@ void showDetailBorrowedBook(TotalFine? totalFine, BorrowedBook borrowedBook,
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: Text(
-                            'Rp ${totalFine?.totalFine ?? "-"}',  
+                            'Rp ${totalFine?.totalFine ?? "-"}',
                             style: GoogleFonts.quicksand(
                                 color: colorblack, fontSize: 20.0),
                           ),

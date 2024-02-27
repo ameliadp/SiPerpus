@@ -1,3 +1,4 @@
+import 'package:digitallibrary/app/modules/saved/views/saved_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,11 +48,16 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               onClicked: () => selectedItem(context, 2),
             ),
             buildMenuItem(
+              text: 'Saved',
+              image: 'assets/images/saved.png',
+              onClicked: () => selectedItem(context, 5),
+            ),
+            buildMenuItem(
               text: 'Profile',
               image: 'assets/images/profile.png',
               onClicked: () => selectedItem(context, 3),
             ),
-            360.height,
+            305.height,
             buildMenuItem(
               text: 'Logout',
               image: 'assets/images/logout.png',
@@ -111,9 +117,9 @@ void selectedItem(BuildContext context, int Index) {
     case 4:
       Get.toNamed(Routes.LOGIN);
       break;
-    // case 5:
-    //   Get.to(() => LoginView());
-    //   break;
+    case 5:
+      Get.toNamed(Routes.SAVED);
+      break;
     case 6:
       logout(context);
       break;

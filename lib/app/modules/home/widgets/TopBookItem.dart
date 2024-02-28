@@ -1,6 +1,8 @@
+import 'package:digitallibrary/app/modules/utils/saved_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:provider/provider.dart';
 
 import '../../utils/utils.dart';
 import '../data/models/models.dart';
@@ -15,9 +17,10 @@ class TopBookItem extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: Container(
+        // decoration: BoxDecoration(color: colorBlue),
         margin: const EdgeInsets.all(5.0),
         width: 100,
-        height: 240,
+        // height: 235,
         child: Column(
           children: [
             Center(

@@ -7,7 +7,8 @@ import '../../utils/color.dart';
 import '../data/data.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  const ProfileView({Key? key}) : super(key: key);
+  GlobalKey<FormState> formKey = GlobalKey();
+  ProfileView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +93,129 @@ class ProfileView extends GetView<ProfileController> {
                                     ),
                                     10.width,
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.0),
+                                                ),
+                                                title: Center(
+                                                  child: Text(
+                                                    'Edit Form',
+                                                    style:
+                                                        GoogleFonts.quicksand(
+                                                            color:
+                                                                colorPrimary),
+                                                  ),
+                                                ),
+                                                content: Form(
+                                                  key: formKey,
+                                                  autovalidateMode:
+                                                      AutovalidateMode.always,
+                                                  child: SizedBox(
+                                                    width: 1100,
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: <Widget>[
+                                                        _buildTextField(
+                                                            'Select Book',
+                                                            controller),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                actions: <Widget>[
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                bottom: 10),
+                                                        child: ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            elevation: 5,
+                                                            shadowColor:
+                                                                colorPrimary,
+                                                            backgroundColor:
+                                                                colorPrimary,
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20.0),
+                                                            ),
+                                                            minimumSize:
+                                                                const Size(
+                                                                    140, 30),
+                                                          ),
+                                                          onPressed: () {},
+                                                          child: Text(
+                                                            'Submit',
+                                                            style: GoogleFonts
+                                                                .quicksand(
+                                                                    color: Colors
+                                                                        .white),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                bottom: 10),
+                                                        child: ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            elevation: 3,
+                                                            shadowColor:
+                                                                colorPrimary,
+                                                            backgroundColor:
+                                                                Colors.white,
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              side: const BorderSide(
+                                                                  color:
+                                                                      colorPrimary),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20.0),
+                                                            ),
+                                                            minimumSize:
+                                                                const Size(
+                                                                    80, 30),
+                                                          ),
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                          child: Text(
+                                                            'Cancel',
+                                                            style: GoogleFonts
+                                                                .quicksand(
+                                                                    color:
+                                                                        colorPrimary),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              );
+                                            });
+                                      },
                                       icon: const Icon(
                                         Icons.edit_outlined,
                                         color: colorPrimary,
@@ -184,4 +307,43 @@ class ProfileView extends GetView<ProfileController> {
           ],
         ));
   }
+}
+
+Widget _buildTextField(String label, ProfileController controller) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 3, right: 3, top: 5),
+    child: SizedBox(
+      height: 60,
+      width: 300,
+      child: TextFormField(
+        controller: controller.EmailC,
+        autocorrect: false,
+        keyboardType: TextInputType.number,
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          isCollapsed: true,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
+          labelText: 'Email',
+          labelStyle: GoogleFonts.quicksand(
+            fontSize: 15,
+            color: controller.labelColor.value,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: colorPrimary),
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Form ini wajib diisi !';
+          }
+          return null;
+        },
+      ),
+    ),
+  );
 }

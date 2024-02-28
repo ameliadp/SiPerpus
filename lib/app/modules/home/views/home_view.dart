@@ -113,49 +113,25 @@ class HomeView extends GetView<HomeController> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: SizedBox(
-                  height: 209,
+                  height: 200,
                   child: GetBuilder<HomeController>(
                     builder: (controller) => ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: controller.popularBooks.length,
                       itemBuilder: (context, index) {
                         final BookModel book = controller.popularBooks[index];
-                        return Stack(
-                          children: [
-                            TopBookItem(
-                              book: book,
-                              onPress: () {
-                                controller.gotoDetailBook(book.bookId);
-                              },
-                            ),
-                            Positioned(
-                              top: 12,
-                              right: 14,
-                              child: CircleAvatar(
-                                backgroundColor: colorwhite,
-                                radius: 10.0,
-                              ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              right: 0,
-                              bottom: 164,
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.bookmark_border,
-                                  size: 10.0,
-                                ),
-                              ),
-                            ),
-                          ],
+                        return TopBookItem(
+                          book: book,
+                          onPress: () {
+                            controller.gotoDetailBook(book.bookId);
+                          },
                         );
                       },
                     ),
                   ),
                 ),
               ),
-              18.height,
+              25.height,
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(

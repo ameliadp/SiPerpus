@@ -1,8 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../data/repository/profile_repository.dart';
 import '../../utils/utils.dart';
 
 class ProfileController extends GetxController {
+  var labelColor = Colors.grey.obs;
+  TextEditingController EmailC = TextEditingController();
   final ProfileRepository profileRepository = Get.find();
   UserModel? user;
 

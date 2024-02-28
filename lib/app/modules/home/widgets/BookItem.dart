@@ -85,7 +85,7 @@ class BookItem extends StatelessWidget {
             ),
           ),
           const Positioned(
-            top: 8,
+            top: 5,
             right: 15,
             child: CircleAvatar(
               backgroundColor: colorwhite,
@@ -93,9 +93,9 @@ class BookItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 0,
+            top: 2,
             right: 4,
-            bottom: 206,
+            bottom: 215,
             child: Consumer<SavedProvider>(
               builder: (context, provider, _) => IconButton(
                 onPressed: () {

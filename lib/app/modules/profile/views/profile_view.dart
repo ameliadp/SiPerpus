@@ -194,7 +194,7 @@ class ProfileView extends GetView<ProfileController> {
                                                             ),
                                                             minimumSize:
                                                                 const Size(
-                                                                    80, 30),
+                                                                    80, 20),
                                                           ),
                                                           onPressed: () {
                                                             Navigator.of(

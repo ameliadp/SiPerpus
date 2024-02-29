@@ -20,6 +20,7 @@ class BookModel {
   final String? thumbnail;
   final double? rating;
   final bool status;
+  final int? stock;
   final List<Review>? reviews;
 
   BookModel({
@@ -33,6 +34,7 @@ class BookModel {
     this.thumbnail,
     this.rating,
     this.reviews,
+    this.stock,
     this.status = false,
   });
 
@@ -46,6 +48,7 @@ class BookModel {
       yearPublication: json["year_publication"],
       synopsis: json["synopsis"],
       thumbnail: json["thumbnail"],
+      stock: int.parse(json["stock"]),
       status: json["is_status"] ?? false,
       rating: json["rating"] == null
           ? 0.0
@@ -67,6 +70,7 @@ class BookModel {
         "year_publication": yearPublication,
         "synopsis": synopsis,
         "thumbnail": thumbnail,
+        "stock": stock,
         "rating": rating,
         "status": status,
         "reviews": reviews == null

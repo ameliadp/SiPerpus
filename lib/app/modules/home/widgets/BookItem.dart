@@ -1,9 +1,6 @@
-import 'package:digitallibrary/app/modules/library/controllers/library_controller.dart';
-import 'package:digitallibrary/app/modules/utils/saved_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:provider/provider.dart';
 
 import '../../utils/utils.dart';
 import '../data/models/models.dart';
@@ -13,11 +10,17 @@ class BookItem extends StatelessWidget {
   // List<BookModel> books = [];
   final BookModel book;
   final VoidCallback onPress;
-  const BookItem({super.key, required this.book, required this.onPress});
+  final VoidCallback? onBookmarkPress;
+  const BookItem({
+    super.key,
+    required this.book,
+    required this.onPress,
+    this.onBookmarkPress,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final word = book.toString();
+    // final word = book.toString();
     // final provider = Provider.of<SavedProvider>(context, listen: false);
     return GestureDetector(
       onTap: onPress,
@@ -28,7 +31,7 @@ class BookItem extends StatelessWidget {
             child: SizedBox(
               // decoration: BoxDecoration(color: colorPrimary),
               width: MediaQuery.of(context).size.width * 0.4,
-              height: 244,
+              // height: 244,
               child: Column(
                 children: [
                   ClipRRect(
@@ -84,33 +87,18 @@ class BookItem extends StatelessWidget {
               ),
             ),
           ),
-          const Positioned(
-            top: 5,
-            right: 15,
-            child: CircleAvatar(
-              backgroundColor: colorwhite,
-              radius: 13.0,
-            ),
-          ),
           Positioned(
-            top: 2,
-            right: 4,
-            bottom: 215,
-            child: Consumer<SavedProvider>(
-              builder: (context, provider, _) => IconButton(
-                onPressed: () {
-                  provider.toogleSaved(book.bookId ?? '');
-                },
-                icon: provider.isExist(book.bookId ?? '')
-                    ? const Icon(
-                        Icons.bookmark,
-                        size: 16.0,
-                        color: colorSaved,
-                      )
-                    : const Icon(
-                        Icons.bookmark_border,
-                        size: 16.0,
-                      ),
+            right: 24,
+            top: 10,
+            child: GestureDetector(
+              onTap: onBookmarkPress,
+              child: const CircleAvatar(
+                backgroundColor: colorwhite,
+                radius: 14.0,
+                child: Icon(
+                  Icons.bookmark_border,
+                  size: 18.0,
+                ),
               ),
             ),
           ),

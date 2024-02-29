@@ -159,7 +159,12 @@ class ProfileView extends GetView<ProfileController> {
                                                                 const Size(
                                                                     140, 30),
                                                           ),
-                                                          onPressed: () {},
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                            controller
+                                                                .updateProfile();
+                                                          },
                                                           child: Text(
                                                             'Submit',
                                                             style: GoogleFonts

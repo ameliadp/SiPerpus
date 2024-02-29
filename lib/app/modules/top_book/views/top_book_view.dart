@@ -90,7 +90,7 @@ class TopBookView extends GetView<TopBookController> {
                                   color: Colors.white.withOpacity(0.5),
                                   spreadRadius: 2,
                                   blurRadius: 5,
-                                  offset: Offset(0, 0),
+                                  offset: const Offset(0, 0),
                                 ),
                               ],
                             ),

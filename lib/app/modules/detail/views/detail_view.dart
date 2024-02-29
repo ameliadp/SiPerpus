@@ -32,6 +32,33 @@ class DetailView extends GetView<DetailController> {
           ),
         ),
       ),
+      floatingActionButton: Align(
+        alignment: Alignment.bottomRight,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 0.0, right: 10.0),
+          child: controller.book?.stock == 0
+              ? const SizedBox()
+              : ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    elevation: 2,
+                    shadowColor: colorgrey,
+                    fixedSize: const Size(110, 20),
+                    backgroundColor: colorPrimary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 4.0, vertical: 2.0),
+                  ),
+                  onPressed: controller.borrowBook,
+                  child: Text(
+                    'Borrow Book'.toUpperCase(),
+                    style: GoogleFonts.quicksand(
+                        color: colorwhite, fontSize: 12.0),
+                  ),
+                ),
+        ),
+      ),
       body: GetBuilder<DetailController>(
         builder: (controller) => Stack(
           children: [
@@ -41,6 +68,7 @@ class DetailView extends GetView<DetailController> {
               right: 0,
               child: SingleChildScrollView(
                 child: Container(
+                  padding: const EdgeInsets.only(bottom: 80),
                   height: MediaQuery.of(context).size.height / 2 + 240,
                   decoration: const BoxDecoration(
                     color: Colors.white,
@@ -72,6 +100,26 @@ class DetailView extends GetView<DetailController> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Stock Book',
+                                      style: GoogleFonts.quicksand(
+                                          color: colordarkgrey, fontSize: 18.0),
+                                    ),
+                                    35.width,
+                                    Text(':',
+                                        style: GoogleFonts.quicksand(
+                                            color: colordarkgrey,
+                                            fontSize: 18.0)),
+                                    8.width,
+                                    Text('${controller.book?.stock}',
+                                        style: GoogleFonts.quicksand(
+                                            color: colordarkgrey,
+                                            fontSize: 18.0))
+                                  ],
+                                ),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -252,35 +300,35 @@ class DetailView extends GetView<DetailController> {
                             ),
                           ),
                           5.height,
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom: 15.0, right: 25.0),
-                              child: controller.book?.status ?? true
-                                  ? const SizedBox()
-                                  : ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        elevation: 2,
-                                        shadowColor: colorgrey,
-                                        fixedSize: const Size(110, 20),
-                                        backgroundColor: colorPrimary,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                        ),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 4.0, vertical: 2.0),
-                                      ),
-                                      onPressed: controller.borrowBook,
-                                      child: Text(
-                                        'Borrow Book'.toUpperCase(),
-                                        style: GoogleFonts.quicksand(
-                                            color: colorwhite, fontSize: 12.0),
-                                      ),
-                                    ),
-                            ),
-                          ),
+                          // Align(
+                          //   alignment: Alignment.bottomRight,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(
+                          //         bottom: 15.0, right: 25.0),
+                          //     child: controller.book?.status ?? true
+                          //         ? const SizedBox()
+                          //         : ElevatedButton(
+                          //             style: ElevatedButton.styleFrom(
+                          //               elevation: 2,
+                          //               shadowColor: colorgrey,
+                          //               fixedSize: const Size(110, 20),
+                          //               backgroundColor: colorPrimary,
+                          //               shape: RoundedRectangleBorder(
+                          //                 borderRadius:
+                          //                     BorderRadius.circular(15.0),
+                          //               ),
+                          //               padding: const EdgeInsets.symmetric(
+                          //                   horizontal: 4.0, vertical: 2.0),
+                          //             ),
+                          //             onPressed: controller.borrowBook,
+                          //             child: Text(
+                          //               'Borrow Book'.toUpperCase(),
+                          //               style: GoogleFonts.quicksand(
+                          //                   color: colorwhite, fontSize: 12.0),
+                          //             ),
+                          //           ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

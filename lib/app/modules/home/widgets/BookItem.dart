@@ -31,19 +31,23 @@ class BookItem extends StatelessWidget {
               height: 244,
               child: Column(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(5.0),
-                    child: Image.network(
-                      // 'assets/images/cover3.jpeg',
-                      URL.imageUrl(book.thumbnail!),
-                      // width: double.infinity,
-                      height: 200,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const SizedBox(
+                  Container(
+                    // decoration: BoxDecoration(
+                    //     border: Border.all(color: colorblack, width: 2.0)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5.0),
+                      child: Image.network(
+                        // 'assets/images/cover3.jpeg',
+                        URL.imageUrl(book.thumbnail!),
+                        // width: double.infinity,
                         height: 200,
-                        child: Icon(Icons.error),
+                        errorBuilder: (context, error, stackTrace) =>
+                            const SizedBox(
+                          height: 200,
+                          child: Icon(Icons.error),
+                        ),
+                        fit: BoxFit.cover,
                       ),
-                      fit: BoxFit.contain,
                     ),
                   ),
                   10.height,

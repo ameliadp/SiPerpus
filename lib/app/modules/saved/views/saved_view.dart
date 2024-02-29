@@ -56,7 +56,7 @@ class SavedView extends GetView<SavedController> {
             mainAxisSpacing: 12.0,
             childAspectRatio: 0.6,
           ),
-          itemCount: words.length,
+          itemCount: provider.saveBooks.length,
           itemBuilder: (context, index) {
             final BookModel book = controller.books[index];
             return BookItem(

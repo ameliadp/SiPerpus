@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SavedProvider extends ChangeNotifier {
-  final Set<String> _saveBooks = {};
+  Set<String> _saveBooks = {};
   Set<String> get saveBooks => _saveBooks;
 
   void toogleSaved(String bookId) {
@@ -19,7 +19,7 @@ class SavedProvider extends ChangeNotifier {
   }
 
   void clearSaved() {
-    _saveBooks.clear();
+    _saveBooks = {};
     notifyListeners();
   }
 

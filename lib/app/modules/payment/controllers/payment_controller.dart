@@ -17,13 +17,14 @@ class PaymentController extends GetxController {
     Uint8List bytes = file.readAsBytesSync();
 
     try {
-      await ImageGallerySaver.saveImage(bytes);
+      var res = await get(Uri.parse('https://shorturl.at/hyY69'));
+      await file.writeAsBytes(res.bodyBytes);
       print('Image saved to gallery.');
     } catch (e) {
       print('Failed to save image to gallery: $e');
     }
   }
-
+ 
   final count = 0.obs;
   @override
   void onInit() {

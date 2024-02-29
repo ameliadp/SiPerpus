@@ -108,8 +108,10 @@ class ProfileView extends GetView<ProfileController> {
                                                     'Edit Form',
                                                     style:
                                                         GoogleFonts.quicksand(
-                                                            color:
-                                                                colorPrimary),
+                                                            color: colorPrimary,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
                                                   ),
                                                 ),
                                                 content: Form(
@@ -122,8 +124,7 @@ class ProfileView extends GetView<ProfileController> {
                                                       mainAxisSize:
                                                           MainAxisSize.min,
                                                       children: <Widget>[
-                                                        _buildTextField(
-                                                            'Select Book',
+                                                        _buildTextField('Email',
                                                             controller),
                                                       ],
                                                     ),
@@ -311,15 +312,16 @@ class ProfileView extends GetView<ProfileController> {
 
 Widget _buildTextField(String label, ProfileController controller) {
   return Padding(
-    padding: const EdgeInsets.only(left: 3, right: 3, top: 5),
+    padding: const EdgeInsets.only(left: 2, right: 2, top: 9),
     child: SizedBox(
-      height: 60,
-      width: 300,
+      height: 65,
+      width: 350,
       child: TextFormField(
         controller: controller.EmailC,
         autocorrect: false,
-        keyboardType: TextInputType.number,
-        textInputAction: TextInputAction.next,
+        keyboardType: TextInputType.multiline,
+        textInputAction: TextInputAction.newline,
+        maxLines: null,
         decoration: InputDecoration(
           isCollapsed: true,
           contentPadding:

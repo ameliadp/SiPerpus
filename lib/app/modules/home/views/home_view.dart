@@ -164,9 +164,8 @@ class HomeView extends GetView<HomeController> {
                       final BookModel book = controller.books[index];
                       return BookItem(
                         book: book,
-                        onPress: () {
-                          controller.gotoDetailBook(book.bookId);
-                        },
+                        onBookmarkPress: () => controller.savedBook(book),
+                        onPress: () => controller.gotoDetailBook(book.bookId),
                       );
                     },
                   ),

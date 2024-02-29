@@ -24,7 +24,7 @@ class BorrowedBookItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
         margin: const EdgeInsets.all(5.0),
-        height: 95.0,
+        // height: 95.0,
         width: double.infinity,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(

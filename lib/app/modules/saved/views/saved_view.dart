@@ -1,12 +1,10 @@
-import 'package:digitallibrary/app/modules/home/data/data.dart';
-import 'package:digitallibrary/app/modules/home/widgets/BookItem.dart';
-import 'package:digitallibrary/app/modules/utils/color.dart';
-import 'package:digitallibrary/app/modules/utils/saved_provider.dart';
+import '../../home/data/data.dart';
+import '../../home/widgets/BookItem.dart';
+import '../../utils/color.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import '../controllers/saved_controller.dart';
 
@@ -14,8 +12,8 @@ class SavedView extends GetView<SavedController> {
   const SavedView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<SavedProvider>(context);
-    final words = provider.saveBooks;
+    // final provider = Provider.of<SavedProvider>(context);
+    // final words = provider.saveBooks;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 50.0,
@@ -47,25 +45,28 @@ class SavedView extends GetView<SavedController> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 27.0,
-            mainAxisSpacing: 12.0,
-            childAspectRatio: 0.6,
+        child: GetBuilder<SavedController>(
+          builder: (controller) => GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 27.0,
+              mainAxisSpacing: 12.0,
+              childAspectRatio: 0.6,
+            ),
+            itemCount: controller.books.length,
+            itemBuilder: (context, index) {
+              final BookModel book = controller.books[index];
+              return BookItem(
+                book: book,
+                onBookmarkPress: () => {
+                  controller.removeFromSaveBooks(book.collectionId ?? ""),
+                },
+                onPress: () => controller.gotoDetailBook(book.bookId),
+              );
+            },
           ),
-          itemCount: words.length,
-          itemBuilder: (context, index) {
-            final BookModel book = controller.books[index];
-            return BookItem(
-              book: book,
-              onPress: () {
-                controller.gotoDetailBook(book.bookId);
-              },
-            );
-          },
         ),
       ),
     );

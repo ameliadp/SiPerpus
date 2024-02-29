@@ -13,4 +13,7 @@ class URL {
   static String reviewUrl = '$baseUrl/review';
   static String totalFineUrl = '$baseUrl/total-fine';
   static String imageUrl(String path) => '$host$path';
+  static String collectionsUrl = '$baseUrl/collections';
+  static String deleteCollectionUrl(String collectionId) =>
+      '$collectionsUrl/delete/$collectionId';
 }

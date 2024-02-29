@@ -74,6 +74,25 @@ class ApiService {
     }
   }
 
+  Future<BaseResponse> delete(
+    String endpoints, {
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? headers,
+  }) async {
+    try {
+      final Response response = await _dio.delete(
+        endpoints,
+        data: body == null ? null : jsonEncode(body),
+        options: Options(headers: headers),
+      );
+      return parseResponse(response);
+    } on DioException catch (e) {
+      return parseError(e);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<BaseResponse> get(
     String endpoints, {
     Map<String, dynamic>? body,

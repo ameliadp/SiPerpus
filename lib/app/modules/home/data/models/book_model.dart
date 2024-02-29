@@ -11,6 +11,7 @@ String bookModelToJson(BookModel data) => json.encode(data.toJson());
 
 class BookModel {
   final String? bookId;
+  final String? collectionId;
   final String? categoryId;
   final String? title;
   final String? writer;
@@ -20,11 +21,13 @@ class BookModel {
   final String? thumbnail;
   final double? rating;
   final bool status;
+  final bool isSave;
   final int? stock;
   final List<Review>? reviews;
 
   BookModel({
     this.bookId,
+    this.collectionId,
     this.categoryId,
     this.title,
     this.writer,
@@ -35,12 +38,14 @@ class BookModel {
     this.rating,
     this.reviews,
     this.stock,
+    this.isSave = false,
     this.status = false,
   });
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
     return BookModel(
       bookId: json["book_id"],
+      collectionId: json["collection_id"].toString(),
       categoryId: json["category_id"],
       title: json["title"],
       writer: json["writer"],
@@ -49,6 +54,7 @@ class BookModel {
       synopsis: json["synopsis"],
       thumbnail: json["thumbnail"],
       stock: int.parse(json["stock"]),
+      isSave: json["is_save"] ?? false,
       status: json["is_status"] ?? false,
       rating: json["rating"] == null
           ? 0.0
@@ -63,6 +69,7 @@ class BookModel {
 
   Map<String, dynamic> toJson() => {
         "book_id": bookId,
+        "collection_id": collectionId,
         "category_id": categoryId,
         "title": title,
         "writer": writer,
@@ -73,6 +80,7 @@ class BookModel {
         "stock": stock,
         "rating": rating,
         "status": status,
+        "is_save": isSave,
         "reviews": reviews == null
             ? []
             : List<dynamic>.from(reviews!.map((x) => x.toJson())),

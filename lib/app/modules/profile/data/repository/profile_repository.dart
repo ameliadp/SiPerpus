@@ -1,4 +1,4 @@
-import 'package:digitallibrary/app/modules/profile/data/models/req_update_profile.dart';
+import '../models/req_update_profile.dart';
 
 import '../../../utils/utils.dart';
 

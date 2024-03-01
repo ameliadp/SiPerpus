@@ -64,7 +64,7 @@ class PaymentView extends GetView<PaymentController> {
                         ),
                       ),
                       onPressed: () {
-                        controller.downloadQr(context);
+                        controller.downloadQr();
                       },
                       child: Text(
                         'DOWNLOAD QR',

@@ -16,4 +16,6 @@ class URL {
   static String collectionsUrl = '$baseUrl/collections';
   static String deleteCollectionUrl(String collectionId) =>
       '$collectionsUrl/delete/$collectionId';
+  static String defaultQRUrl =
+      'https://barcodesindonesia.com/wp-content/uploads/sites/122/2019/07/QR-code-example.jpg';
 }

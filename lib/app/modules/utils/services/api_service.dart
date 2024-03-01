@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../constants/url.dart';
 import '../models/models.dart';
@@ -145,5 +148,51 @@ class ApiService {
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<BaseResponse> downloadFile(
+    DownloadFileModel downloadFile,
+  ) async {
+    try {
+      String path = await _getFilePath(downloadFile.fileNameWithExt);
+      final Response response = await _dio.download(
+        downloadFile.fullFileUrl,
+        path,
+        onReceiveProgress: (receivedBytes, totalBytes) {
+          if (totalBytes <= 0) return;
+          final percentage =
+              (receivedBytes / totalBytes * 100).toStringAsFixed(0);
+          final progress = receivedBytes / totalBytes;
+          final DownloadProgress downloadProgress = DownloadProgress(
+            percentage: percentage,
+            progress: progress,
+            receivedBytes: receivedBytes,
+            totalBytes: totalBytes,
+          );
+          downloadFile.downloadProgress(downloadProgress);
+        },
+      );
+      return parseResponse(response);
+    } on DioException catch (e) {
+      return parseError(e);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<String> _getFilePath(String filename) async {
+    Directory? dir;
+
+    try {
+      if (Platform.isIOS) {
+        dir = await getApplicationDocumentsDirectory(); // for iOS
+      } else {
+        dir = Directory('/storage/emulated/0/Download/'); // for android
+        if (!await dir.exists()) dir = (await getExternalStorageDirectory())!;
+      }
+    } catch (err) {
+      debugPrint("Cannot get download folder path $err");
+    }
+    return "${dir?.path}$filename";
   }
 }

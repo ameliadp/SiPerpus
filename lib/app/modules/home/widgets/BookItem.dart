@@ -88,7 +88,7 @@ class BookItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 24,
+            right: 30,
             top: 10,
             child: GestureDetector(
               onTap: onBookmarkPress,

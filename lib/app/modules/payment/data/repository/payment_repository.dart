@@ -18,7 +18,7 @@ class PaymentRepository {
 
   Future<bool> requestPermission() async {
     try {
-      return await HelperService.requestPermission();
+      return await HelperService.getStoragePermission();
     } on ServerException catch (e) {
       throw e.message;
     } on Failure catch (e) {

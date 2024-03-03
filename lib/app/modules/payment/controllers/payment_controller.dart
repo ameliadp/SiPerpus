@@ -23,10 +23,10 @@ class PaymentController extends GetxController {
   // }
   void downloadQr() async {
     try {
-      // final isGranted = await paymentRepository.requestPermission();
-      // if (!isGranted) {
-      //   throw 'Permission denied';
-      // }
+      final isGranted = await paymentRepository.requestPermission();
+      if (!isGranted) {
+        throw 'Permission denied';
+      }
       var time = DateTime.now().millisecondsSinceEpoch;
       DownloadProgress downloadProgress;
       final DownloadFileModel downloadFile = DownloadFileModel(

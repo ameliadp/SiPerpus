@@ -52,7 +52,7 @@ class LoadingOverlayAlt extends StatelessWidget {
                         height: 14,
                       ),
                       Text(
-                        'Mohon Tunggu...',
+                        'Please Wait...',
                         style: TextStyle(
                           fontSize: 14,
                           decoration: TextDecoration.none,

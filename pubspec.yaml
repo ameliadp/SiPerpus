@@ -68,4 +68,6 @@ flutter:
     - assets/images/home.png
     - assets/images/saved.png
     - assets/images/logout.png
+    - assets/images/qr.jpg
+    - assets/images/qr.png
   uses-material-design: true

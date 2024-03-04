@@ -17,11 +17,11 @@ class TopBookView extends GetView<TopBookController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 50.0,
+          toolbarHeight: 60.0,
           title: Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Text(
-              'Top Book',
+              'Top Books',
               style: GoogleFonts.quicksand(
                   color: colorPrimary,
                   fontSize: 25.0,
@@ -50,10 +50,10 @@ class TopBookView extends GetView<TopBookController> {
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20.0,
-                  vertical: 10.0,
+                  vertical: 20.0,
                 ),
                 child: SizedBox(
-                  height: 35.0,
+                  height: 40.0,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Stack(

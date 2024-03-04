@@ -16,7 +16,7 @@ class SavedView extends GetView<SavedController> {
     // final words = provider.saveBooks;
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 50.0,
+        toolbarHeight: 60.0,
         title: Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: Text(
@@ -44,7 +44,7 @@ class SavedView extends GetView<SavedController> {
         shadowColor: colorgrey,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 30.0),
         child: GetBuilder<SavedController>(
           builder: (controller) => GridView.builder(
             shrinkWrap: true,

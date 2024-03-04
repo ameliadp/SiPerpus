@@ -88,8 +88,8 @@ class BookItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 30,
-            top: 10,
+            right: 33,
+            bottom: 100,
             child: GestureDetector(
               onTap: onBookmarkPress,
               child: CircleAvatar(
@@ -97,6 +97,7 @@ class BookItem extends StatelessWidget {
                 radius: 14.0,
                 child: Icon(
                   book.isSave ? Icons.bookmark : Icons.bookmark_border,
+                  color: colordarkgrey,
                   size: 18.0,
                 ),
               ),

@@ -20,7 +20,7 @@ class MyListView extends GetView<MyListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 50.0,
+        toolbarHeight: 60.0,
         title: Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: Text(
@@ -66,7 +66,7 @@ class MyListView extends GetView<MyListController> {
             flex: 1,
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 25.0),
               child: GetBuilder<MyListController>(
                 builder: (controller) => RefreshIndicator.adaptive(
                   onRefresh: controller.getBorrowedBooks,
@@ -108,7 +108,7 @@ void showDetailBorrowedBook(TotalFine? totalFine, BorrowedBook borrowedBook,
     Stack(
       children: [
         Container(
-          height: 600.0,
+          height: 660.0,
           margin: const EdgeInsets.fromLTRB(0, 90, 0, 0),
           decoration: const BoxDecoration(
             color: colorwhite,
@@ -163,7 +163,7 @@ void showDetailBorrowedBook(TotalFine? totalFine, BorrowedBook borrowedBook,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Total Price',
+                        'Total Fine',
                         style: GoogleFonts.quicksand(
                             color: colorblack,
                             fontWeight: FontWeight.bold,

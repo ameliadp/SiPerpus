@@ -24,7 +24,7 @@ class BorrowedBookItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
         margin: const EdgeInsets.all(5.0),
-        // height: 95.0,
+        height: 120.0,
         width: double.infinity,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(
@@ -98,22 +98,22 @@ class BorrowedBookItem extends StatelessWidget {
                     children: [
                       Container(
                         color: colorwhite,
-                        width: 120,
+                        width: 150,
                       ),
-                      SizedBox(
-                        height: 25.0,
-                        width: 100.0,
-                        child: Align(
-                          alignment: Alignment.bottomRight,
-                          child: !isBorrowed
-                              ? null
-                              : ElevatedButton(
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: !isBorrowed
+                            ? null
+                            : SizedBox(
+                                height: 33,
+                                width: 100,
+                                child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: colorPrimary,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    // fixedSize: const Size(75.0, 5.0),
+                                    // fixedSize: const Size(80.0, 5.0),
                                   ),
                                   onPressed: onReturnPress,
                                   child: Text(
@@ -124,7 +124,7 @@ class BorrowedBookItem extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                        ),
+                              ),
                       ),
                     ],
                   ),

@@ -31,7 +31,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                 Get.back();
               },
             ),
-            48.height,
+            73.height,
             buildMenuItem(
               text: 'Home',
               image: 'assets/images/home.png',
@@ -57,7 +57,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               image: 'assets/images/profile.png',
               onClicked: () => selectedItem(context, 3),
             ),
-            305.height,
+            355.height,
             buildMenuItem(
               text: 'Logout',
               image: 'assets/images/logout.png',

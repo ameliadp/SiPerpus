@@ -32,7 +32,7 @@ class HomeView extends GetView<HomeController> {
               child: NavigationDrawerWidget())),
       appBar: AppBar(
         backgroundColor: colorwhite,
-        toolbarHeight: 50.0,
+        toolbarHeight: 60.0,
         title: Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: Text(
@@ -64,8 +64,8 @@ class HomeView extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+                padding: const EdgeInsets.only(
+                    left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
                 child: Container(
                   alignment: Alignment.topRight,
                   child: GetBuilder<HomeController>(

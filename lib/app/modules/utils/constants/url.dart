@@ -1,5 +1,5 @@
 class URL {
-  static String host = "http://localhost:8080";
+  static String host = "https://a9a1-103-108-20-102.ngrok-free.app";
   static String baseUrl = '$host/api';
   static String loginUrl = '$baseUrl/login';
   static String registerUrl = '$baseUrl/register';
@@ -16,6 +16,5 @@ class URL {
   static String collectionsUrl = '$baseUrl/collections';
   static String deleteCollectionUrl(String collectionId) =>
       '$collectionsUrl/delete/$collectionId';
-  static String defaultQRUrl =
-      'https://barcodesindonesia.com/wp-content/uploads/sites/122/2019/07/QR-code-example.jpg';
+  static String defaultQRUrl = 'https://i.postimg.cc/yNLdwSbX/qr.png';
 }

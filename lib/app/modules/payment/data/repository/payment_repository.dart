@@ -8,11 +8,11 @@ class PaymentRepository {
       final BaseResponse res = await _apiService.downloadFile(downloadFile);
       return res.status;
     } on ServerException catch (e) {
-      throw e.message;
+      throw 'Server Exception: ${e.message}';
     } on Failure catch (e) {
-      throw e.message;
+      throw 'Failure: ${e.message}';
     } catch (e) {
-      throw 'Something went wrong $e';
+      throw 'Something went wrong: $e';
     }
   }
 

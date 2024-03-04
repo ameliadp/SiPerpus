@@ -24,7 +24,7 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
         child: SingleChildScrollView(
           child: Obx(
             () => Form(
@@ -37,7 +37,7 @@ class LoginView extends GetView<LoginController> {
                   Center(
                     child: Padding(
                       padding: EdgeInsets.only(
-                          top: controller.isRegis ? 70.0 : 115.0),
+                          top: controller.isRegis ? 100.0 : 180.0),
                       child: Image.asset(
                         'assets/images/logoH.png',
                         width: 250.0,
@@ -65,7 +65,7 @@ class LoginView extends GetView<LoginController> {
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold),
                             ),
-                      controller.isRegis ? 10.height : 2.height,
+                      controller.isRegis ? 14.height : 6.height,
                       if (controller.isRegis)
                         TextFormField(
                           showCursor: true,
@@ -101,7 +101,7 @@ class LoginView extends GetView<LoginController> {
                                     const BorderSide(color: colorPrimary)),
                           ),
                         ),
-                      10.height,
+                      15.height,
                       TextFormField(
                         showCursor: true,
                         cursorColor: colorPrimary,
@@ -130,7 +130,7 @@ class LoginView extends GetView<LoginController> {
                                   const BorderSide(color: colorPrimary)),
                         ),
                       ),
-                      10.height,
+                      15.height,
                       TextFormField(
                         showCursor: true,
                         cursorColor: colorPrimary,
@@ -201,7 +201,7 @@ class LoginView extends GetView<LoginController> {
                       //               const BorderSide(color: colorPrimary)),
                       //     ),
                       //   ),
-                      10.height,
+                      15.height,
                       if (controller.isRegis)
                         TextFormField(
                           showCursor: true,
@@ -248,7 +248,7 @@ class LoginView extends GetView<LoginController> {
                               color: Colors.white, fontSize: 15),
                         ),
                       ),
-                      20.height,
+                      25.height,
                       Center(
                         child: InkWell(
                           onTap: () {

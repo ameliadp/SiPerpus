@@ -22,7 +22,7 @@ class LibraryView extends GetView<LibraryController> {
     // final provider = Provider.of<SavedProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 50.0,
+        toolbarHeight: 60.0,
         title: Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: Text(

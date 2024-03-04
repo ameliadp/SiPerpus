@@ -13,7 +13,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          toolbarHeight: 50.0,
+          toolbarHeight: 60.0,
           title: Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Text(
@@ -139,7 +139,7 @@ class ProfileView extends GetView<ProfileController> {
                                                         padding:
                                                             const EdgeInsets
                                                                 .only(
-                                                                bottom: 10),
+                                                                bottom: 5.0),
                                                         child: ElevatedButton(
                                                           style: ElevatedButton
                                                               .styleFrom(
@@ -153,11 +153,11 @@ class ProfileView extends GetView<ProfileController> {
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          20.0),
+                                                                          15.0),
                                                             ),
                                                             minimumSize:
                                                                 const Size(
-                                                                    140, 30),
+                                                                    140, 40),
                                                           ),
                                                           onPressed: () {
                                                             Navigator.pop(
@@ -178,7 +178,7 @@ class ProfileView extends GetView<ProfileController> {
                                                         padding:
                                                             const EdgeInsets
                                                                 .only(
-                                                                bottom: 10),
+                                                                bottom: 5),
                                                         child: ElevatedButton(
                                                           style: ElevatedButton
                                                               .styleFrom(
@@ -195,11 +195,11 @@ class ProfileView extends GetView<ProfileController> {
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          20.0),
+                                                                          15.0),
                                                             ),
                                                             minimumSize:
                                                                 const Size(
-                                                                    80, 30),
+                                                                    80, 40),
                                                           ),
                                                           onPressed: () {
                                                             Navigator.of(
@@ -323,8 +323,8 @@ Widget _buildTextField(String label, ProfileController controller) {
       child: TextFormField(
         controller: controller.EmailC,
         autocorrect: false,
-        keyboardType: TextInputType.number,
-        textInputAction: TextInputAction.next,
+        keyboardType: TextInputType.emailAddress,
+        textInputAction: TextInputAction.done,
         decoration: InputDecoration(
           isCollapsed: true,
           contentPadding:
